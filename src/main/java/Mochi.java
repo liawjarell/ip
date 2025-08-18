@@ -2,32 +2,55 @@ import java.util.Scanner;
 
 public class Mochi {
 
-    private static final String HELLO_MESSAGE = """
-        ________________________________________
-        Hello! I'm MOCHI
-        What can I do for you?
-        ________________________________________""";
+    // Constants
+    private static Task[] tasks = new Task[100];
+    private static int tasksCount = 0;
 
-    private static final String BYE_MESSAGE = """
-        ________________________________________
-        Bye. Hope to see you again!
-        ________________________________________""";
+    // Starting message. Wrapped
+    private static final String HELLO_MESSAGE = WrapMessage.wrap(
+            "Hello! I'm MOCHI!\nWhat can i do for you?"
+    );
 
-    // Function to print out all contents in the list
-    private static void printList(String[] list) {
-        for (int i = 0; i < list.length; i++) {
-            if (list[i] == null) {
+    // Ending message. Wrapped
+    private static final String BYE_MESSAGE = WrapMessage.wrap("Bye. Hope to see you again!");
+
+    // Function to print out all contents in the Task array
+    private static void printList() {
+        String toPrint = "Here are the tasks in your list:";
+        for (int i = 0; i < tasks.length; i++) {
+            if (tasks[i] == null) {
                 break;
             }
-            System.out.printf("%d. %s%n", i+1, list[i]);
+            toPrint = toPrint.concat(String.format("\n%d.%s", i + 1, tasks[i].toString()));
         }
+        // Wrap final message and print
+        System.out.println(WrapMessage.wrap(toPrint));
+    }
+
+    private static void markTask(int taskPosition) {
+        tasks[taskPosition].mark();
+        String toPrint = WrapMessage.wrap(
+                String.format("Nice! I've marked this task as done:\n   %s", tasks[taskPosition].toString()));
+        System.out.println(toPrint);
+    }
+
+    private static void unmarkTask(int taskPosition) {
+        tasks[taskPosition].unmark();
+        String toPrint = WrapMessage.wrap(
+                String.format("Ok, I've marked this task as not done yet:\n %s", tasks[taskPosition].toString()));
+        System.out.println(toPrint);
+    }
+
+    private static void addTask(String description) {
+        tasks[tasksCount] = new Task(description);
+        tasksCount++;
+        String toPrint = WrapMessage.wrap(String.format("added: %s", description));
+        System.out.println(toPrint);
     }
 
     public static void main(String[] args) {
 
         // Variables
-        String[] inputs = new String[100];
-        int inputsCount = 0;
         Scanner myObj = new Scanner(System.in);
 
         // Intro message
@@ -40,13 +63,19 @@ public class Mochi {
                 // Exit condition
                 break;
             } else if (input.equals("list")) {
-                // print out inputs
-                printList(inputs);
+                // Print out inputs
+                printList();
+            } else if (input.split(" ")[0].equals("mark")) {
+                // Mark task
+                int taskPosition = Integer.parseInt(input.split(" ")[1]) - 1;
+                markTask(taskPosition);
+            } else if (input.split(" ")[0].equals("unmark")) {
+                // Unmark task
+                int taskPosition = Integer.parseInt(input.split(" ")[1]) - 1;
+                unmarkTask(taskPosition);
             } else {
                 // Add input to list
-                inputs[inputsCount] = input;
-                System.out.println("added: " + input);
-                inputsCount++;
+                addTask(input);
             }
         }
 
