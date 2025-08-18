@@ -41,11 +41,20 @@ public class Mochi {
         System.out.println(toPrint);
     }
 
-    private static void addTask(String description) {
-        tasks[tasksCount] = new Task(description);
-        tasksCount++;
-        String toPrint = WrapMessage.wrap(String.format("added: %s", description));
+    private static void addTask(String input) {
+        String taskType = input.split(" ", 2)[0];
+        String description = input.split(" ", 2)[1];
+        if (taskType.equals("todo")) {
+            tasks[tasksCount] = new ToDos(description);
+        }
+
+        String toPrint = WrapMessage.wrap(String.format(
+                "Got it. I've added this task:\n    %s\nNow you have %d tasks in the list",
+                tasks[tasksCount].toString(),
+                tasksCount + 1));
         System.out.println(toPrint);
+        tasksCount++;
+
     }
 
     public static void main(String[] args) {
@@ -73,7 +82,7 @@ public class Mochi {
                 // Unmark task
                 int taskPosition = Integer.parseInt(input.split(" ")[1]) - 1;
                 unmarkTask(taskPosition);
-            } else {
+            } else if (input.split(" ", 2)[0].equals("todo")) {
                 // Add input to list
                 addTask(input);
             }
