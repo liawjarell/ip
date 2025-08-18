@@ -1,16 +1,16 @@
 public class Task {
-    private String description;
-    private boolean completed = false;
+    protected String description;
+    protected boolean completed = false;
 
     public Task(String description) {
         this.description = description;
     }
 
-    public void markTask() {
+    public void mark() {
         this.completed = true;
     }
 
-    public void unmarkTask() {
+    public void unmark() {
         this.completed = false;
     }
 
