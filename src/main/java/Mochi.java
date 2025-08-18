@@ -47,9 +47,9 @@ public class Mochi {
         if (taskType.equals("todo")) {
             tasks[tasksCount] = new ToDos(description);
         } else if (taskType.equals("deadline")) {
-            String date = description.split(" /by ", 2)[1];
-            description = description.split(" /by ", 2)[0];
-            tasks[tasksCount] = new Deadlines(description, date);
+//            String date = description.split(" /by ", 2)[1];
+//            description = description.split(" /by ", 2)[0];
+            tasks[tasksCount] = new Deadlines(description);
         } else if (taskType.equals("event")) {
             tasks[tasksCount] = new Event(description);
         }
