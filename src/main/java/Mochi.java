@@ -46,6 +46,10 @@ public class Mochi {
         String description = input.split(" ", 2)[1];
         if (taskType.equals("todo")) {
             tasks[tasksCount] = new ToDos(description);
+        } else if (taskType.equals("deadline")) {
+            String date = description.split(" /by ", 2)[1];
+            description = description.split(" /by ", 2)[0];
+            tasks[tasksCount] = new Deadlines(description, date);
         }
 
         String toPrint = WrapMessage.wrap(String.format(
@@ -84,6 +88,8 @@ public class Mochi {
                 unmarkTask(taskPosition);
             } else if (input.split(" ", 2)[0].equals("todo")) {
                 // Add input to list
+                addTask(input);
+            } else if (input.split(" ", 2)[0].equals("deadline")) {
                 addTask(input);
             }
         }
