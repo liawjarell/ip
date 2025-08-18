@@ -50,6 +50,8 @@ public class Mochi {
             String date = description.split(" /by ", 2)[1];
             description = description.split(" /by ", 2)[0];
             tasks[tasksCount] = new Deadlines(description, date);
+        } else if (taskType.equals("event")) {
+            tasks[tasksCount] = new Event(description);
         }
 
         String toPrint = WrapMessage.wrap(String.format(
@@ -90,6 +92,8 @@ public class Mochi {
                 // Add input to list
                 addTask(input);
             } else if (input.split(" ", 2)[0].equals("deadline")) {
+                addTask(input);
+            } else if (input.split(" ", 2)[0].equals("event")) {
                 addTask(input);
             }
         }
