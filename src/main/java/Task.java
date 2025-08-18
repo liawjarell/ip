@@ -1,11 +1,9 @@
 public class Task {
     private String description;
-    private int position;
     private boolean completed = false;
 
-    public Task(String description, int position) {
+    public Task(String description) {
         this.description = description;
-        this.position = position;
     }
 
     public void markTask() {
@@ -19,9 +17,9 @@ public class Task {
     @Override
     public String toString() {
         if (completed) {
-            return String.format("%d.[X] %s", position, description);
+            return String.format("[X] %s", description);
         } else {
-            return String.format("%d.[ ] %s", position, description);
+            return String.format("[ ] %s", description);
         }
     }
 
