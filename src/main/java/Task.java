@@ -14,13 +14,13 @@ public class Task {
         this.completed = false;
     }
 
+    public String getStatusIcon() {
+        return (completed ? "X" : " ");
+    }
+
     @Override
     public String toString() {
-        if (completed) {
-            return String.format("[X] %s", description);
-        } else {
-            return String.format("[ ] %s", description);
-        }
+        return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
 
 }
