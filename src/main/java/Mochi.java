@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class Mochi {
@@ -41,14 +42,20 @@ public class Mochi {
         System.out.println(toPrint);
     }
 
-    private static void addTask(String input) {
+    private static void addTask(String input) throws MochiException {
         String taskType = input.split(" ", 2)[0];
-        String description = input.split(" ", 2)[1];
+        String description = "";
+
+        try {
+            // If task is provided without description, splitting of string throws ArrayIndexOutofBoundsException
+            description = input.split(" ", 2)[1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new MochiException("Task description cannot be empty!");
+        }
+
         if (taskType.equals("todo")) {
             tasks[tasksCount] = new ToDos(description);
         } else if (taskType.equals("deadline")) {
-//            String date = description.split(" /by ", 2)[1];
-//            description = description.split(" /by ", 2)[0];
             tasks[tasksCount] = new Deadlines(description);
         } else if (taskType.equals("event")) {
             tasks[tasksCount] = new Event(description);
@@ -63,7 +70,12 @@ public class Mochi {
 
     }
 
-    private static void getInput() {
+    private static void tryAgain(String message) {
+        String toPrint = WrapMessage.wrap(message);
+        System.out.println(toPrint);
+    }
+
+    private static void getInput() throws MochiException{
         // Variables
         Scanner myObj = new Scanner(System.in);
 
@@ -91,7 +103,8 @@ public class Mochi {
             } else if (input.split(" ", 2)[0].equals("event")) {
                 addTask(input);
             } else {
-//                throw new MochiException("test");
+                // Input does not match any of the given commands
+                throw new MochiException("OOPS! I'm sorry but I don't know what that means!");
             }
         }
     }
@@ -102,7 +115,11 @@ public class Mochi {
         System.out.println(HELLO_MESSAGE);
 
         // Loop to get input
-        getInput();
+        try {
+            getInput();
+        } catch (MochiException e) {
+            System.out.println(e.getMessage());
+        }
 
         // Exit message
         System.out.println(BYE_MESSAGE);
