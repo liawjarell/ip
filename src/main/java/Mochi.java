@@ -63,15 +63,10 @@ public class Mochi {
 
     }
 
-    public static void main(String[] args) {
-
+    private static void getInput() {
         // Variables
         Scanner myObj = new Scanner(System.in);
 
-        // Intro message
-        System.out.println(HELLO_MESSAGE);
-
-        // Loop to get input
         while (true) {
             String input = myObj.nextLine();
             if (input.equals("bye")) {
@@ -95,8 +90,19 @@ public class Mochi {
                 addTask(input);
             } else if (input.split(" ", 2)[0].equals("event")) {
                 addTask(input);
+            } else {
+//                throw new MochiException("test");
             }
         }
+    }
+
+    public static void main(String[] args) {
+
+        // Intro message
+        System.out.println(HELLO_MESSAGE);
+
+        // Loop to get input
+        getInput();
 
         // Exit message
         System.out.println(BYE_MESSAGE);
