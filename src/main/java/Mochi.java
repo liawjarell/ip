@@ -78,6 +78,20 @@ public class Mochi {
 
     }
 
+    private static void deleteTask(int taskPosition) throws MochiException {
+        if (taskPosition < 0 || taskPosition >= tasksCount) {
+            throw new MochiException("Please input a valid task number");
+        }
+        String toPrint = WrapMessage.wrap(String.format(
+                "Noted. I've removed this task:\n    %s\nNow you have %d tasks in the list.",
+                tasks.get(taskPosition).toString(),
+                tasksCount - 1
+        ));
+        System.out.println(toPrint);
+        tasks.remove(taskPosition);
+        tasksCount--;
+    }
+
     private static void tryAgain(String message) {
         String toPrint = WrapMessage.wrap(message);
         System.out.println(toPrint);
@@ -89,26 +103,33 @@ public class Mochi {
 
         while (true) {
             String input = myObj.nextLine();
+            String head = input.split(" ", 2)[0];
             if (input.equals("bye")) {
                 // Exit condition
                 break;
             } else if (input.equals("list")) {
                 // Print out inputs
                 printList();
-            } else if (input.split(" ")[0].equals("mark")) {
-                // Mark task
-                int taskPosition = Integer.parseInt(input.split(" ")[1]) - 1;
-                markTask(taskPosition);
-            } else if (input.split(" ")[0].equals("unmark")) {
-                // Unmark task
-                int taskPosition = Integer.parseInt(input.split(" ")[1]) - 1;
-                unmarkTask(taskPosition);
-            } else if (input.split(" ", 2)[0].equals("todo")) {
-                // Add input to list
+            } else if (head.equals("mark") || head.equals("unmark") || head.equals("delete")) {
+                // Mark , unmark or delete task
+                int taskPosition = 0;
+                try {
+                    taskPosition = Integer.parseInt(input.split(" ")[1]) - 1;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new MochiException("Please input the task number!");
+                }
+                if (head.equals("mark")) {
+                    markTask(taskPosition);
+                } else if (head.equals("unmark")) {
+                    unmarkTask(taskPosition);
+                } else {
+                    deleteTask(taskPosition);
+                }
+            } else if (head.equals("todo")) {
                 addTask(input);
-            } else if (input.split(" ", 2)[0].equals("deadline")) {
+            } else if (head.equals("deadline")) {
                 addTask(input);
-            } else if (input.split(" ", 2)[0].equals("event")) {
+            } else if (head.equals("event")) {
                 addTask(input);
             } else {
                 // Input does not match any of the given commands
