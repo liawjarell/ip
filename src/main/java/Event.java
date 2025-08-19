@@ -2,11 +2,42 @@ public class Event extends Task {
     protected String from;
     protected String to;
 
-    public Event(String description) {
-        super(description.split(" /from ",2)[0]);
-        String duration = description.split("/from ", 2)[1];
-        this.from = duration.split(" /to ", 2)[0];
-        this.to = duration.split(" /to ", 2)[1];
+    public Event(String description) throws MochiException {
+
+        // Split at /from to get title of task.
+        super(description.split("\\s*/from\\s*",2)[0]);
+
+        int fromIndex = description.indexOf("/from");
+        int toIndex = description.indexOf("/to");
+        // Checks if /from exists
+        if (fromIndex == -1) {
+            throw new MochiException("Please specify a start date or time using /from");
+        } // Checks if /to exists
+        if (toIndex == -1) {
+            throw new MochiException("Please specify a end date or time using /to");
+        } // Checks if /from comes before /to
+        if (toIndex < fromIndex) {
+            throw new MochiException("/from must come before /to");
+        }
+
+        // first part is task title, second part is duration
+        String[] parts = description.split("\\s*/from\\s*");
+
+        // First part is from, second part is to
+        String[] duration = parts[1].split("\\s*/to\\s*");
+
+        String from = duration[0].trim();
+        if (from.isEmpty()) {
+            throw new MochiException("Please provide a start date or time after /from");
+        }
+
+        String to = duration[1].trim();
+        if (to.isEmpty()) {
+            throw new MochiException("Please provide an end date or time after /to");
+        }
+
+        this.from = from;
+        this.to = to;
     }
 
     @Override

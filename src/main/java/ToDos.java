@@ -1,6 +1,6 @@
 public class ToDos extends Task{
 
-    public ToDos(String description) {
+    public ToDos(String description) throws MochiException {
         super(description);
     }
 
