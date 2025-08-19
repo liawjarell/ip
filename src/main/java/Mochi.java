@@ -28,14 +28,20 @@ public class Mochi {
         System.out.println(WrapMessage.wrap(toPrint));
     }
 
-    private static void markTask(int taskPosition) {
+    private static void markTask(int taskPosition) throws MochiException{
+        if (taskPosition < 0 || taskPosition >= tasksCount) {
+            throw new MochiException("Please input a valid task number!");
+        }
         tasks[taskPosition].mark();
         String toPrint = WrapMessage.wrap(
                 String.format("Nice! I've marked this task as done:\n   %s", tasks[taskPosition].toString()));
         System.out.println(toPrint);
     }
 
-    private static void unmarkTask(int taskPosition) {
+    private static void unmarkTask(int taskPosition) throws MochiException {
+        if (taskPosition < 0 || taskPosition >= tasksCount) {
+            throw new MochiException("Please input a valid task number!");
+        }
         tasks[taskPosition].unmark();
         String toPrint = WrapMessage.wrap(
                 String.format("Ok, I've marked this task as not done yet:\n %s", tasks[taskPosition].toString()));
