@@ -2,69 +2,109 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Storage {
 
+    // Constants
     private File f;
-    private String finalString;
 
+    // Initialise a storage from the given filepath
+    public Storage(String filePath) {
+        try {
+            File temp = new File(filePath);
 
-    public Storage(String filePath) throws IOException {
-        File temp = new File(filePath);
-        if (temp.createNewFile()) {
+            // Attempts to create a new file if storage file does not exist
+            temp.createNewFile();
+
+            this.f = temp;
+        } catch (IOException e) {
+            System.out.println("Error encountered during storage creation: " + e.getMessage());
         }
-        this.f = temp;
     }
 
-//    public ArrayList<Task> load() {
-//
-//    }
+    // Parses tasks from file
+    public ArrayList<Task> readTasks() {
 
-//    public ArrayList<Task> readTasks() {
-//        ArrayList<Task> temp = new ArrayList<>();
-//        try {
-//            Scanner sc = new Scanner(this.f);
-//            while (sc.hasNext()) {
-//
-//            }
-//        } catch (FileNotFoundException e) {
-//            System.out.println("File not found");
-//        }
-//    }
+        ArrayList<Task> temp = new ArrayList<>();
+        try {
+            Scanner sc = new Scanner(this.f);
+            while (sc.hasNext()) {
+                String tempTask = sc.nextLine();
+                if (tempTask.isEmpty()) {
+                    // Last line will be empty
+                    break;
+                } else {
+                    // First part task type, second part description
+                    String[] parts = tempTask.split(" \\| ", 2);
+                    if (parts[0].equals("T")) {
+                        temp.add(ToDos.parseString(parts[1]));
+                    } else if (parts[0].equals("D")) {
+                        temp.add(Deadlines.parseString(parts[1]));
+                    } else if (parts[0].equals("E")) {
+                        temp.add(Event.parseString(parts[1]));
+                    } else {
+                        throw new MochiException("Error encountered while parsing: " + tempTask);
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found while reading tasks");
+        } catch (MochiException e) {
+            System.out.println(e.getMessage());
+        }
+        return temp;
+    }
 
-    public void saveTask(List<Task> tasks) throws IOException {
+    public void saveTask(List<Task> tasks) {
         String temp = "";
         for (int i = 0; i < tasks.size(); i++) {
             temp = temp + tasks.get(i).toSaveString() + "\n";
         }
-//        this.finalString = temp;
-        FileWriter fw = new FileWriter(f);
-        fw.write(temp);
-        fw.close();
+        try {
+            FileWriter fw = new FileWriter(f);
+            fw.write(temp);
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error encountered while saving tasks: " + e.getMessage());
+        }
+//        System.out.println(temp);
+    }
 
-        System.out.println(temp);
+    // Function to print out all contents in the Task array. Copied from Mochi.java
+    private static void printList(ArrayList<Task> tasks) {
+        String toPrint = "Here are the tasks in your list:";
+        for (int i = 0; i < tasks.size(); i++) {
+//            if (tasks.get(i) == null) {
+//                break;
+//            }
+            toPrint = toPrint.concat(String.format("\n%d.%s", i + 1, tasks.get(i).toString()));
+        }
+        // Wrap final message and print
+        System.out.println(WrapMessage.wrap(toPrint));
     }
 
     public static void main(String[] args) {
-        try {
+//        try {
             Storage s = new Storage("data/test.txt");
             ArrayList<Task> testTasks = new ArrayList<>();
-            try {
-                testTasks.add(new ToDos("read book"));
-                testTasks.get(0).mark();
-                testTasks.add(new Deadlines("return book /by June 6th"));
-                testTasks.add(new Event("project meeting /from 2pm /to 5pm"));
-                testTasks.get(2).mark();
-                s.saveTask(testTasks);
-            } catch (MochiException e ) {
-                System.out.println(e.getMessage());
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+//            try {
+//                testTasks.add(new ToDos("read book"));
+//                testTasks.get(0).mark();
+//                testTasks.add(new Deadlines("return book /by June 6th"));
+//                testTasks.add(new Event("project meeting /from 2pm /to 5pm"));
+//                testTasks.get(2).mark();
+//                s.saveTask(testTasks);
+//            } catch (MochiException e ) {
+//                System.out.println(e.getMessage());
+//            }
+            testTasks = s.readTasks();
+            printList(testTasks);
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
     }
 }
