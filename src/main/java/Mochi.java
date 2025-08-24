@@ -1,12 +1,12 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Mochi {
 
     // Constants
-//    private static Task[] tasks = new Task[100];
-    private static ArrayList<Task> tasks = new ArrayList<>();
+    private static List<Task> tasks = new ArrayList<>();
     private static int tasksCount = 0;
 
     // Starting message. Wrapped
