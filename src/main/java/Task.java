@@ -25,6 +25,11 @@ public class Task {
         return null;
     }
 
+    // Parses given string from storage, and creates respective Task Objects.
+    public static Task parseString(String toParse) throws MochiException {
+        return null;
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);

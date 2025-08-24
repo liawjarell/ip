@@ -40,9 +40,22 @@ public class Event extends Task {
         this.to = to;
     }
 
+    public Event(String description, boolean isCompleted, String from, String to) throws MochiException{
+        super(description);
+        this.isCompleted = isCompleted;
+        this.from = from;
+        this.to = to;
+    }
+
+    public static Event parseString(String toParse) throws MochiException{
+        String[] result = toParse.strip().split(" \\| ", 4);
+
+        return new Event(result[1], result[0].equals("1"), result[2], result[3]);
+    }
+
     @Override
     public String toSaveString() {
-        return String.format("D | %d | %s | %s | %s",
+        return String.format("E | %d | %s | %s | %s",
                 this.isCompleted ? 1 : 0, this.description, this.from, this.to);
     }
 

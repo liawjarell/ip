@@ -22,6 +22,18 @@ public class Deadlines extends Task {
         this.by = parts[1];
     }
 
+    public Deadlines(String description, boolean isCompleted, String by) throws MochiException{
+        super(description);
+        this.isCompleted = isCompleted;
+        this.by = by;
+    }
+
+    public static Deadlines parseString(String toParse) throws MochiException{
+        String[] result = toParse.strip().split(" \\| ", 3);
+
+        return new Deadlines(result[1], result[0].equals("1"), result[2]);
+    }
+
     @Override
     public String toSaveString() {
         return String.format("D | %d | %s | %s",
