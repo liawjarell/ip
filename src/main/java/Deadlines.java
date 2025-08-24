@@ -23,6 +23,12 @@ public class Deadlines extends Task {
     }
 
     @Override
+    public String toSaveString() {
+        return String.format("D | %d | %s | %s",
+                this.isCompleted ? 1 : 0, this.description, this.by);
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }

@@ -1,6 +1,6 @@
 public class Task {
     protected String description;
-    protected boolean completed = false;
+    protected boolean isCompleted = false;
 
     public Task(String description) throws MochiException{
         if (description.isEmpty()) {
@@ -10,15 +10,19 @@ public class Task {
     }
 
     public void mark() {
-        this.completed = true;
+        this.isCompleted = true;
     }
 
     public void unmark() {
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     public String getStatusIcon() {
-        return (completed ? "X" : " ");
+        return (isCompleted ? "X" : " ");
+    }
+
+    public String toSaveString() {
+        return null;
     }
 
     @Override
