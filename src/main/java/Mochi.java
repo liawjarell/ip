@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,7 @@ public class Mochi {
     // Constants
     private static List<Task> tasks = new ArrayList<>();
     private static int tasksCount = 0;
+    private static Storage storage;
 
     // Starting message. Wrapped
     private static final String HELLO_MESSAGE = WrapMessage.wrap(
@@ -21,9 +23,6 @@ public class Mochi {
     private static void printList() {
         String toPrint = "Here are the tasks in your list:";
         for (int i = 0; i < tasks.size(); i++) {
-//            if (tasks.get(i) == null) {
-//                break;
-//            }
             toPrint = toPrint.concat(String.format("\n%d.%s", i + 1, tasks.get(i).toString()));
         }
         // Wrap final message and print
@@ -92,11 +91,6 @@ public class Mochi {
         tasksCount--;
     }
 
-    private static void tryAgain(String message) {
-        String toPrint = WrapMessage.wrap(message);
-        System.out.println(toPrint);
-    }
-
     private static void getInput() {
         // Variables
         Scanner myObj = new Scanner(System.in);
@@ -136,6 +130,7 @@ public class Mochi {
                     // Input does not match any of the given commands
                     throw new MochiException("OOPS! I'm sorry but I don't know what that means!");
                 }
+//                storage.saveTask(tasks); // Remove all static commands.
             } catch (MochiException e) {
                 System.out.println(e.getMessage());
             }
@@ -147,6 +142,11 @@ public class Mochi {
 
         // Intro message
         System.out.println(HELLO_MESSAGE);
+
+        // Initialise Storage
+//        Storage s = new Storage("data/test.txt");
+//        tasks = s.readTasks();
+//        tasksCount = tasks.size();
 
         // Loop to get input
         getInput();
