@@ -13,8 +13,14 @@ public class Storage {
     private File f;
 
     // Initialise a storage from the given filepath
-    public Storage(String filePath) {
+    public Storage(String filePath) throws MochiException{
         try {
+            // Checks if data directory exists. If not, mkdir
+            File dir = new File("data");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
             File temp = new File(filePath);
 
             // Attempts to create a new file if storage file does not exist
@@ -22,12 +28,13 @@ public class Storage {
 
             this.f = temp;
         } catch (IOException e) {
-            System.out.println("Error encountered during storage creation: " + e.getMessage());
+//            System.out.println("Error encountered during storage creation: " + e.getMessage());
+            throw new MochiException("Error encountered during storage initialisation: " + e.getMessage());
         }
     }
 
     // Parses tasks from file
-    public ArrayList<Task> readTasks() {
+    public ArrayList<Task> readTasks() throws MochiException{
 
         ArrayList<Task> temp = new ArrayList<>();
         try {
@@ -52,14 +59,15 @@ public class Storage {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File not found while reading tasks");
+//            System.out.println("File not found while reading tasks");
+            throw new MochiException("File not found while reading tasks");
         } catch (MochiException e) {
             System.out.println(e.getMessage());
         }
         return temp;
     }
 
-    public void saveTask(List<Task> tasks) {
+    public void saveTasks(List<Task> tasks) throws MochiException {
         String temp = "";
         for (int i = 0; i < tasks.size(); i++) {
             temp = temp + tasks.get(i).toSaveString() + "\n";
@@ -69,9 +77,9 @@ public class Storage {
             fw.write(temp);
             fw.close();
         } catch (IOException e) {
-            System.out.println("Error encountered while saving tasks: " + e.getMessage());
+//            System.out.println("Error encountered while saving tasks: " + e.getMessage());
+            throw new MochiException("Error encountered while saving tasks: " + e.getMessage());
         }
-//        System.out.println(temp);
     }
 
     // Function to print out all contents in the Task array. Copied from Mochi.java
@@ -85,26 +93,5 @@ public class Storage {
         }
         // Wrap final message and print
         System.out.println(WrapMessage.wrap(toPrint));
-    }
-
-    public static void main(String[] args) {
-//        try {
-            Storage s = new Storage("data/test.txt");
-            ArrayList<Task> testTasks = new ArrayList<>();
-//            try {
-//                testTasks.add(new ToDos("read book"));
-//                testTasks.get(0).mark();
-//                testTasks.add(new Deadlines("return book /by June 6th"));
-//                testTasks.add(new Event("project meeting /from 2pm /to 5pm"));
-//                testTasks.get(2).mark();
-//                s.saveTask(testTasks);
-//            } catch (MochiException e ) {
-//                System.out.println(e.getMessage());
-//            }
-            testTasks = s.readTasks();
-            printList(testTasks);
-//        } catch (IOException e) {
-//            System.out.println(e.getMessage());
-//        }
     }
 }

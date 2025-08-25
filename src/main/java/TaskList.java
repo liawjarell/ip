@@ -3,12 +3,16 @@ import java.util.List;
 
 public class TaskList {
 
-    private List<Task> tasks;
-    private int tasksCount;
+    protected List<Task> tasks;
+    protected int tasksCount;
 
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
         this.tasksCount = tasks.size();
+    }
+
+    public List<Task> getTasks() {
+        return this.tasks;
     }
 
     public void addTask(String input) throws MochiException {

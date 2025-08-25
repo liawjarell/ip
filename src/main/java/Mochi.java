@@ -8,21 +8,20 @@ public class Mochi {
 
     // Constants
     private TaskList tasks;
-    private static int tasksCount = 0;
     private Storage storage;
 
-    public Mochi() {
-        this.tasks = new TaskList(new ArrayList<>());
+    public Mochi(String filePath) {
+        try {
+            this.storage = new Storage(filePath);
+            this.tasks = new TaskList(this.storage.readTasks());
+        } catch (MochiException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void run() {
         // Intro message
         System.out.println(HELLO_MESSAGE);
-
-        // Initialise Storage
-//        Storage s = new Storage("data/test.txt");
-//        tasks = s.readTasks();
-//        tasksCount = tasks.size();
 
         // Loop to get input
         getInput();
@@ -40,28 +39,37 @@ public class Mochi {
     private static final String BYE_MESSAGE = WrapMessage.wrap("Bye. Hope to see you again!");
 
     // Calls TaskList's printList()
-    private void printList() {
+    public void printList() {
         this.tasks.printList();
     }
 
     // Calls TaskList's markTask()
-    private void markTask(int taskPosition) throws MochiException{
+    public void markTask(int taskPosition) throws MochiException{
         this.tasks.markTask(taskPosition);
+        this.saveTasks(this.tasks);
     }
 
     // Calls TaskList's unmarkTask()
-    private void unmarkTask(int taskPosition) throws MochiException {
+    public void unmarkTask(int taskPosition) throws MochiException {
         this.tasks.unmarkTask(taskPosition);
+        this.saveTasks(this.tasks);
     }
 
     // Calls TaskList's addTask()
-    private void addTask(String input) throws MochiException {
+    public void addTask(String input) throws MochiException {
         this.tasks.addTask(input);
+        this.saveTasks(this.tasks);
     }
 
     // Calls TaskList's deleteTask()
-    private void deleteTask(int taskPosition) throws MochiException {
+    public void deleteTask(int taskPosition) throws MochiException {
         this.tasks.deleteTask(taskPosition);
+        this.saveTasks(this.tasks);
+    }
+
+    // Calls Storage's saveTasks()
+    public void saveTasks(TaskList tasks) throws MochiException{
+        this.storage.saveTasks(this.tasks.getTasks());
     }
 
     // Loop to getInput
@@ -78,7 +86,7 @@ public class Mochi {
                     break;
                 } else if (input.equals("list")) {
                     // Print out inputs
-                    this.tasks.printList();
+                    this.printList();
                 } else if (head.equals("mark") || head.equals("unmark") || head.equals("delete")) {
                     // Mark , unmark or delete task
                     int taskPosition = 0;
@@ -88,18 +96,18 @@ public class Mochi {
                         throw new MochiException("Please input the task number!");
                     }
                     if (head.equals("mark")) {
-                        this.tasks.markTask(taskPosition);
+                        this.markTask(taskPosition);
                     } else if (head.equals("unmark")) {
-                        this.tasks.unmarkTask(taskPosition);
+                        this.unmarkTask(taskPosition);
                     } else {
-                        this.tasks.deleteTask(taskPosition);
+                        this.deleteTask(taskPosition);
                     }
                 } else if (head.equals("todo")) {
-                    this.tasks.addTask(input);
+                    this.addTask(input);
                 } else if (head.equals("deadline")) {
-                    this.tasks.addTask(input);
+                    this.addTask(input);
                 } else if (head.equals("event")) {
-                    this.tasks.addTask(input);
+                    this.addTask(input);
                 } else {
                     // Input does not match any of the given commands
                     throw new MochiException("OOPS! I'm sorry but I don't know what that means!");
@@ -112,6 +120,7 @@ public class Mochi {
     }
 
     public static void main(String[] args) {
-        new Mochi().run();
+//        new Mochi().run();
+        new Mochi("data/tasks.txt").run();
     }
 }
