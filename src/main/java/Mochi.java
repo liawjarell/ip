@@ -1,13 +1,15 @@
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Mochi {
 
     // Constants
-//    private static Task[] tasks = new Task[100];
-    private static ArrayList<Task> tasks = new ArrayList<>();
+    private static List<Task> tasks = new ArrayList<>();
     private static int tasksCount = 0;
+    private static Storage storage;
 
     // Starting message. Wrapped
     private static final String HELLO_MESSAGE = WrapMessage.wrap(
@@ -21,9 +23,6 @@ public class Mochi {
     private static void printList() {
         String toPrint = "Here are the tasks in your list:";
         for (int i = 0; i < tasks.size(); i++) {
-//            if (tasks.get(i) == null) {
-//                break;
-//            }
             toPrint = toPrint.concat(String.format("\n%d.%s", i + 1, tasks.get(i).toString()));
         }
         // Wrap final message and print
@@ -92,49 +91,50 @@ public class Mochi {
         tasksCount--;
     }
 
-    private static void tryAgain(String message) {
-        String toPrint = WrapMessage.wrap(message);
-        System.out.println(toPrint);
-    }
-
-    private static void getInput() throws MochiException{
+    private static void getInput() {
         // Variables
         Scanner myObj = new Scanner(System.in);
 
         while (true) {
-            String input = myObj.nextLine();
-            String head = input.split(" ", 2)[0];
-            if (input.equals("bye")) {
-                // Exit condition
-                break;
-            } else if (input.equals("list")) {
-                // Print out inputs
-                printList();
-            } else if (head.equals("mark") || head.equals("unmark") || head.equals("delete")) {
-                // Mark , unmark or delete task
-                int taskPosition = 0;
-                try {
-                    taskPosition = Integer.parseInt(input.split(" ")[1]) - 1;
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new MochiException("Please input the task number!");
-                }
-                if (head.equals("mark")) {
-                    markTask(taskPosition);
-                } else if (head.equals("unmark")) {
-                    unmarkTask(taskPosition);
+            try {
+                String input = myObj.nextLine();
+                String head = input.split(" ", 2)[0];
+                if (input.equals("bye")) {
+                    // Exit condition
+                    break;
+                } else if (input.equals("list")) {
+                    // Print out inputs
+                    printList();
+                } else if (head.equals("mark") || head.equals("unmark") || head.equals("delete")) {
+                    // Mark , unmark or delete task
+                    int taskPosition = 0;
+                    try {
+                        taskPosition = Integer.parseInt(input.split(" ")[1]) - 1;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new MochiException("Please input the task number!");
+                    }
+                    if (head.equals("mark")) {
+                        markTask(taskPosition);
+                    } else if (head.equals("unmark")) {
+                        unmarkTask(taskPosition);
+                    } else {
+                        deleteTask(taskPosition);
+                    }
+                } else if (head.equals("todo")) {
+                    addTask(input);
+                } else if (head.equals("deadline")) {
+                    addTask(input);
+                } else if (head.equals("event")) {
+                    addTask(input);
                 } else {
-                    deleteTask(taskPosition);
+                    // Input does not match any of the given commands
+                    throw new MochiException("OOPS! I'm sorry but I don't know what that means!");
                 }
-            } else if (head.equals("todo")) {
-                addTask(input);
-            } else if (head.equals("deadline")) {
-                addTask(input);
-            } else if (head.equals("event")) {
-                addTask(input);
-            } else {
-                // Input does not match any of the given commands
-                throw new MochiException("OOPS! I'm sorry but I don't know what that means!");
+//                storage.saveTask(tasks); // Remove all static commands.
+            } catch (MochiException e) {
+                System.out.println(e.getMessage());
             }
+
         }
     }
 
@@ -143,12 +143,13 @@ public class Mochi {
         // Intro message
         System.out.println(HELLO_MESSAGE);
 
+        // Initialise Storage
+//        Storage s = new Storage("data/test.txt");
+//        tasks = s.readTasks();
+//        tasksCount = tasks.size();
+
         // Loop to get input
-        try {
-            getInput();
-        } catch (MochiException e) {
-            System.out.println(e.getMessage());
-        }
+        getInput();
 
         // Exit message
         System.out.println(BYE_MESSAGE);
