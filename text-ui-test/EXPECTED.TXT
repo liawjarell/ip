@@ -5,46 +5,30 @@
 
     ________________________________________________________________________________
     Got it. I've added this task:
-        [T][ ] read book
-    Now you have 1 tasks in the list
-    ________________________________________________________________________________
-
-    ________________________________________________________________________________
-    Got it. I've added this task:
-        [D][ ] return book (by: June 6th)
-    Now you have 2 tasks in the list
-    ________________________________________________________________________________
-
-    ________________________________________________________________________________
-    Got it. I've added this task:
-        [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
-    Now you have 3 tasks in the list
-    ________________________________________________________________________________
-
-    ________________________________________________________________________________
-    Got it. I've added this task:
         [T][ ] join sports club
     Now you have 4 tasks in the list
     ________________________________________________________________________________
 
     ________________________________________________________________________________
     Got it. I've added this task:
-        [T][ ] borrow book
+        [D][ ] borrow book (by: tomorrow)
     Now you have 5 tasks in the list
     ________________________________________________________________________________
 
     ________________________________________________________________________________
-    Here are the tasks in your list:
-    1.[T][ ] read book
-    2.[D][ ] return book (by: June 6th)
-    3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
-    4.[T][ ] join sports club
-    5.[T][ ] borrow book
+    Got it. I've added this task:
+        [E][ ] study (from: 8pm to: 12am)
+    Now you have 6 tasks in the list
     ________________________________________________________________________________
 
     ________________________________________________________________________________
-    Nice! I've marked this task as done:
-       [T][X] read book
+    Here are the tasks in your list:
+    1.[T][X] read book
+    2.[D][ ] return book (by: June 6th)
+    3.[E][X] project meeting (from: 2pm to: 5pm)
+    4.[T][ ] join sports club
+    5.[D][ ] borrow book (by: tomorrow)
+    6.[E][ ] study (from: 8pm to: 12am)
     ________________________________________________________________________________
 
     ________________________________________________________________________________
@@ -53,26 +37,65 @@
     ________________________________________________________________________________
 
     ________________________________________________________________________________
+    Nice! I've marked this task as done:
+       [D][X] borrow book (by: tomorrow)
+    ________________________________________________________________________________
+
+    ________________________________________________________________________________
+    Nice! I've marked this task as done:
+       [E][X] study (from: 8pm to: 12am)
+    ________________________________________________________________________________
+
+    ________________________________________________________________________________
     Here are the tasks in your list:
     1.[T][X] read book
     2.[D][ ] return book (by: June 6th)
-    3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+    3.[E][X] project meeting (from: 2pm to: 5pm)
     4.[T][X] join sports club
-    5.[T][ ] borrow book
+    5.[D][X] borrow book (by: tomorrow)
+    6.[E][X] study (from: 8pm to: 12am)
+    ________________________________________________________________________________
+
+    ________________________________________________________________________________
+    Ok, I've marked this task as not done yet:
+     [T][ ] join sports club
+    ________________________________________________________________________________
+
+    ________________________________________________________________________________
+    Here are the tasks in your list:
+    1.[T][X] read book
+    2.[D][ ] return book (by: June 6th)
+    3.[E][X] project meeting (from: 2pm to: 5pm)
+    4.[T][ ] join sports club
+    5.[D][X] borrow book (by: tomorrow)
+    6.[E][X] study (from: 8pm to: 12am)
     ________________________________________________________________________________
 
     ________________________________________________________________________________
     Noted. I've removed this task:
-        [T][ ] borrow book
-    Now you have 4 tasks in the list.
+        [D][X] borrow book (by: tomorrow)
+    Now you have 5 tasks in the list.
     ________________________________________________________________________________
 
     ________________________________________________________________________________
     Here are the tasks in your list:
     1.[T][X] read book
     2.[D][ ] return book (by: June 6th)
-    3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
-    4.[T][X] join sports club
+    3.[E][X] project meeting (from: 2pm to: 5pm)
+    4.[T][ ] join sports club
+    5.[E][X] study (from: 8pm to: 12am)
+    ________________________________________________________________________________
+
+    ________________________________________________________________________________
+    Noted. I've removed this task:
+        [T][ ] join sports club
+    Now you have 4 tasks in the list.
+    ________________________________________________________________________________
+
+    ________________________________________________________________________________
+    Noted. I've removed this task:
+        [E][X] study (from: 8pm to: 12am)
+    Now you have 3 tasks in the list.
     ________________________________________________________________________________
 
     ________________________________________________________________________________
