@@ -3,6 +3,9 @@
 REM create bin directory if it doesn't exist
 if not exist ..\bin mkdir ..\bin
 
+REM create data directory if it doesn't exist
+if not exist ../data mkdir ../data
+
 REM delete output from previous run
 if exist ACTUAL.TXT del ACTUAL.TXT
 
