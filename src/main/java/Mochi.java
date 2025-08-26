@@ -13,14 +13,11 @@ public class Mochi {
             this.storage = new Storage(filePath);
             this.tasks = new TaskList(this.storage.readTasks());
         } catch (MochiException e) {
-            System.out.println(e.getMessage());
+            ui.warn(e.getMessage());
         }
     }
 
     public void run() {
-        // Intro message
-//        System.out.println(HELLO_MESSAGE);
-
         // Loop to get input
         getInput();
 
@@ -31,7 +28,6 @@ public class Mochi {
 
     // Calls TaskList's printList()
     public void printList() {
-//        this.tasks.printList();
         ui.showTasks(this.tasks);
     }
 
@@ -110,7 +106,7 @@ public class Mochi {
                 }
 //                storage.saveTask(tasks); // Remove all static commands.
             } catch (MochiException e) {
-                System.out.println(e.getMessage());
+                this.ui.warn(e.getMessage());
             }
         }
     }

@@ -14,39 +14,43 @@ public class Ui {
                 message).indent(4);
     }
 
-    public static void wrapPrint(String message) {
+    public void wrapPrint(String message) {
         System.out.println(wrap(message));
     }
 
+    public void warn(String message) {
+        this.wrapPrint(message);
+    }
+
     public void welcome() {
-        wrapPrint(Messages.MESSAGE_WELCOME);
+        this.wrapPrint(Messages.MESSAGE_WELCOME);
     }
 
     public void goodbye() {
-        System.out.println(wrap(Messages.MESSAGE_GOODBYE));
+        this.wrapPrint(Messages.MESSAGE_GOODBYE);
     }
 
     public void notifyMarkTask(String taskString) {
-        wrapPrint(String.format(Messages.MESSAGE_TASK_MARKED, taskString));
+        this.wrapPrint(String.format(Messages.MESSAGE_TASK_MARKED, taskString));
     }
 
     public void notifyUnmarkTask(String taskString) {
-        wrapPrint(String.format(Messages.MESSAGE_TASK_UNMARKED, taskString));
+        this.wrapPrint(String.format(Messages.MESSAGE_TASK_UNMARKED, taskString));
     }
 
     public void notifyAddTask(String taskString, int numOfTasks) {
-        wrapPrint(String.format(Messages.MESSAGE_TASK_ADDED, taskString, numOfTasks));
+        this.wrapPrint(String.format(Messages.MESSAGE_TASK_ADDED, taskString, numOfTasks));
     }
 
     public void notifyDeleteTask(String taskString, int numOfTasks) {
-        wrapPrint(String.format(Messages.MESSAGE_TASK_DELETED, taskString, numOfTasks));
+        this.wrapPrint(String.format(Messages.MESSAGE_TASK_DELETED, taskString, numOfTasks));
     }
 
     public void showTasks(TaskList tasks) {
         if (tasks.isEmpty()) {
-            wrapPrint(Messages.MESSAGE_EMPTY_LIST);
+            this.wrapPrint(Messages.MESSAGE_EMPTY_LIST);
         } else {
-            wrapPrint(String.format(Messages.MESSAGE_LIST_PRINT, tasks.toString()));
+            this.wrapPrint(String.format(Messages.MESSAGE_LIST_PRINT, tasks.toString()));
         }
     }
 
@@ -75,7 +79,7 @@ public class Ui {
 
 
         } catch (MochiException e) {
-            wrapPrint(e.getMessage());
+            ui.warn(e.getMessage());
         }
     }
 

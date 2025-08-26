@@ -20,7 +20,6 @@ public class Deadlines extends Task {
 
         if (parts[1].isEmpty()) {
             throw new MochiException("Please specify a date/time after /by");
-
         }
 
         this.by = Parser.stringToLocalDateTime(parts[1]);
@@ -29,7 +28,6 @@ public class Deadlines extends Task {
     public Deadlines(String description, boolean isCompleted, String by) throws MochiException{
         super(description);
         this.isCompleted = isCompleted;
-//        this.by = Parser.stringToLocalDateTime(by);
         this.by = LocalDateTime.parse(by);
     }
 

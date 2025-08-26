@@ -59,11 +59,9 @@ public class Storage {
                 }
             }
         } catch (FileNotFoundException e) {
-//            System.out.println("File not found while reading tasks");
             throw new MochiException("File not found while reading tasks");
-        } catch (MochiException e) {
-            System.out.println(e.getMessage());
         }
+
         return temp;
     }
 

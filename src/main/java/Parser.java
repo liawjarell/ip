@@ -3,7 +3,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
 
 public class Parser {
 
@@ -17,7 +16,7 @@ public class Parser {
             } else if (header.contains("-")) {
                 date = LocalDate.parse(dateTime[0]);
             } else if (header.equals("tomorrow")) {
-                date = LocalDate.now().plus(1, ChronoUnit.DAYS);
+                date = LocalDate.now().plusDays(1);
             } else if (header.equals("today")) {
                 date = LocalDate.now();
             } else {
@@ -27,7 +26,6 @@ public class Parser {
             throw new MochiException("Please input a proper date in the format [yyyy/MM/dd]");
         }
 
-        System.out.println(date.toString());
         return date;
     }
 
@@ -44,7 +42,7 @@ public class Parser {
             } else if (dateString.contains("-")) {
                 date = LocalDate.parse(dateString);
             } else if (dateString.equals("tomorrow")) {
-                date = LocalDate.now().plus(1, ChronoUnit.DAYS);
+                date = LocalDate.now().plusDays(1);
             } else if (dateString.equals("today")) {
                 date = LocalDate.now();
             } else {
@@ -70,7 +68,6 @@ public class Parser {
             throw new MochiException("Please input a proper date and time in the format [yyyy/MM/dd HHmm]");
         }
 
-//        System.out.println(dateTime.toString());
         return dateTime;
 
     }
