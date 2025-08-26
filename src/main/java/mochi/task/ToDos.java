@@ -2,7 +2,6 @@ package mochi.task;
 
 import mochi.exception.MochiException;
 
-
 public class ToDos extends Task {
 
     // Default constructor, not in use anymore
@@ -24,7 +23,11 @@ public class ToDos extends Task {
     public static ToDos parseString(String toParse) throws MochiException {
         String[] result = toParse.strip().split(" \\| ", 2);
 
-        return new ToDos(result[1], result[0].equals("1"));
+        try {
+            return new ToDos(result[1], result[0].equals("1"));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new MochiException(e.getMessage());
+        }
     }
 
     @Override
