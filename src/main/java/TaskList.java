@@ -31,12 +31,6 @@ public class TaskList {
             // If task is provided without description, splitting of string throws ArrayIndexOutofBoundsException
             description = input.split(" ", 2)[1];
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new MochiException("Task description cannot be empty");
-        }
-        try {
-            // If task is provided without description, splitting of string throws ArrayIndexOutofBoundsException
-            description = input.split(" ", 2)[1];
-        } catch (ArrayIndexOutOfBoundsException e) {
             throw new MochiException("Task description cannot be empty!");
         }
 
@@ -49,6 +43,21 @@ public class TaskList {
         this.tasks.add(task);
         this.tasksCount++;
         return task;
+    }
+
+    public Task addTask(String[] input) throws MochiException {
+        Task task = null;
+
+        switch (input[0]) {
+        case "todo" -> {task = new ToDos(input);}
+        case "deadline" -> {task = new Deadlines(input);}
+        case "event" -> {task = new Event(input);}
+        }
+
+        this.tasks.add(task);
+        this.tasksCount++;
+        return task;
+
     }
 
     public Task deleteTask(int taskPosition) throws MochiException {

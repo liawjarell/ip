@@ -47,6 +47,12 @@ public class Event extends Task {
         this.to = to;
     }
 
+    public Event(String[] results) throws MochiException {
+        super(results[1]);
+        this.from = results[2];
+        this.to = results[3];
+    }
+
     public static Event parseString(String toParse) throws MochiException{
         String[] result = toParse.strip().split(" \\| ", 4);
 

@@ -9,6 +9,10 @@ public class ToDos extends Task{
         this.isCompleted = isCompleted;
     }
 
+    public ToDos(String[] result) throws MochiException{
+        super(result[1]);
+    }
+
     public static ToDos parseString(String toParse) throws MochiException{
         String[] result = toParse.strip().split(" \\| ", 2);
 

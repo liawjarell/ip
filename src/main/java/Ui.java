@@ -55,32 +55,32 @@ public class Ui {
     }
 
     public static void main(String[] args) {
-        Ui ui = new Ui();
-        try {
-            TaskList testTasks = new TaskList(new ArrayList<>());
-
-            testTasks.addTask("todo read book");
-            ui.notifyAddTask(testTasks.getTasks().get(0).toString(), 1);
-
-            testTasks.markTask(0);
-            ui.notifyMarkTask(testTasks.getTasks().get(0).toString());
-
-            testTasks.unmarkTask(0);
-            ui.notifyUnmarkTask(testTasks.getTasks().get(0).toString());
-
-            testTasks.addTask("deadline return book /by today");
-            ui.notifyAddTask(testTasks.getTasks().get(1).toString(), 2);
-
-            ui.showTasks(testTasks);
-
-            Task temp = testTasks.getTasks().get(1);
-            testTasks.deleteTask(1);
-            ui.notifyDeleteTask(temp.toString(), 1);
-
-
-        } catch (MochiException e) {
-            ui.warn(e.getMessage());
-        }
+//        Ui ui = new Ui();
+//        try {
+//            TaskList testTasks = new TaskList(new ArrayList<>());
+//
+//            testTasks.addTask("todo read book");
+//            ui.notifyAddTask(testTasks.getTasks().get(0).toString(), 1);
+//
+//            testTasks.markTask(0);
+//            ui.notifyMarkTask(testTasks.getTasks().get(0).toString());
+//
+//            testTasks.unmarkTask(0);
+//            ui.notifyUnmarkTask(testTasks.getTasks().get(0).toString());
+//
+//            testTasks.addTask("deadline return book /by today");
+//            ui.notifyAddTask(testTasks.getTasks().get(1).toString(), 2);
+//
+//            ui.showTasks(testTasks);
+//
+//            Task temp = testTasks.getTasks().get(1);
+//            testTasks.deleteTask(1);
+//            ui.notifyDeleteTask(temp.toString(), 1);
+//
+//
+//        } catch (MochiException e) {
+//            ui.warn(e.getMessage());
+//        }
     }
 
 

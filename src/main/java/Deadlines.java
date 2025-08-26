@@ -31,6 +31,11 @@ public class Deadlines extends Task {
         this.by = LocalDateTime.parse(by);
     }
 
+    public Deadlines(String[] result) throws MochiException {
+        super(result[1]);
+        this.by = Parser.stringToLocalDateTime(result[2]);
+    }
+
 
     public static Deadlines parseString(String toParse) throws MochiException{
         String[] result = toParse.strip().split(" \\| ", 3);
