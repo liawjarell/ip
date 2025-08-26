@@ -20,5 +20,5 @@ public class Messages {
             "You have no existing tasks!";
 
     public static final String MESSAGE_LIST_PRINT =
-            "Here are the tasks in your list: \n%s";
+            "Here are the tasks in your list:\n%s";
 }

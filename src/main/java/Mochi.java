@@ -1,7 +1,3 @@
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Mochi {
@@ -9,9 +5,11 @@ public class Mochi {
     // Constants
     private TaskList tasks;
     private Storage storage;
+    private Ui ui;
 
     public Mochi(String filePath) {
         try {
+            ui = new Ui();
             this.storage = new Storage(filePath);
             this.tasks = new TaskList(this.storage.readTasks());
         } catch (MochiException e) {
@@ -21,14 +19,16 @@ public class Mochi {
 
     public void run() {
         // Intro message
-        System.out.println(HELLO_MESSAGE);
+//        System.out.println(HELLO_MESSAGE);
 
         // Loop to get input
         getInput();
 
         // Exit message
-        System.out.println(BYE_MESSAGE);
+//        System.out.println(BYE_MESSAGE);
+        ui.goodbye();
     }
+
 
     // Starting message. Wrapped
     private static final String HELLO_MESSAGE = WrapMessage.wrap(
@@ -40,30 +40,35 @@ public class Mochi {
 
     // Calls TaskList's printList()
     public void printList() {
-        this.tasks.printList();
+//        this.tasks.printList();
+        ui.showTasks(this.tasks);
     }
 
     // Calls TaskList's markTask()
     public void markTask(int taskPosition) throws MochiException{
-        this.tasks.markTask(taskPosition);
+        Task temp = this.tasks.markTask(taskPosition);
+        ui.notifyMarkTask(temp.toString());
         this.saveTasks(this.tasks);
     }
 
     // Calls TaskList's unmarkTask()
     public void unmarkTask(int taskPosition) throws MochiException {
-        this.tasks.unmarkTask(taskPosition);
+        Task temp = this.tasks.unmarkTask(taskPosition);
+        ui.notifyUnmarkTask(temp.toString());
         this.saveTasks(this.tasks);
     }
 
     // Calls TaskList's addTask()
     public void addTask(String input) throws MochiException {
-        this.tasks.addTask(input);
+        Task temp = this.tasks.addTask(input);
+        ui.notifyAddTask(temp.toString(), this.tasks.getTasksCount());
         this.saveTasks(this.tasks);
     }
 
     // Calls TaskList's deleteTask()
     public void deleteTask(int taskPosition) throws MochiException {
-        this.tasks.deleteTask(taskPosition);
+        Task temp = this.tasks.deleteTask(taskPosition);
+        ui.notifyDeleteTask(temp.toString(), this.tasks.getTasksCount());
         this.saveTasks(this.tasks);
     }
 

@@ -15,7 +15,16 @@ public class TaskList {
         return this.tasks;
     }
 
-    public void addTask(String input) throws MochiException {
+    public boolean isEmpty() {
+        return this.tasks.isEmpty();
+    }
+
+    public int getTasksCount() {
+        return this.tasksCount;
+    }
+
+    public Task addTask(String input) throws MochiException {
+        Task task = null;
         String taskType = input.split(" ",2)[0];
         String description = "";
         try {
@@ -32,62 +41,52 @@ public class TaskList {
         }
 
         switch (taskType) {
-            case "todo" -> this.tasks.add(new ToDos(description));
-            case "deadline" -> this.tasks.add(new Deadlines(description));
-            case "event" -> this.tasks.add(new Event(description));
+            case "todo" -> {task = new ToDos(description);}
+            case "deadline" -> {task = new Deadlines(description);}
+            case "event" -> {task = new Event(description);}
         }
 
-        String toPrint = WrapMessage.wrap(String.format(
-                "Got it. I've added this task:\n    %s\nNow you have %d tasks in the list",
-                this.tasks.get(tasksCount).toString(),
-                this.tasksCount + 1));
-        System.out.println(toPrint);
+        this.tasks.add(task);
         this.tasksCount++;
+        return task;
     }
 
-    public void deleteTask(int taskPosition) throws MochiException {
+    public Task deleteTask(int taskPosition) throws MochiException {
         if (taskPosition < 0 || taskPosition >= this.tasksCount) {
             throw new MochiException("Please input a valid task number");
         }
-        String toPrint = WrapMessage.wrap(String.format(
-                "Noted. I've removed this task:\n    %s\nNow you have %d tasks in the list.",
-                this.tasks.get(taskPosition).toString(),
-                this.tasksCount - 1
-        ));
-        System.out.println(toPrint);
+
+        Task task = this.tasks.get(taskPosition);
         this.tasks.remove(taskPosition);
         this.tasksCount--;
+        return task;
     }
 
-    public void markTask(int taskPosition)  throws MochiException {
+    public Task markTask(int taskPosition)  throws MochiException {
         if (taskPosition < 0 || taskPosition >= this.tasksCount) {
             throw new MochiException("Please input a valid task number!");
         }
-        this.tasks.get(taskPosition).mark();
-        String toPrint = WrapMessage.wrap(
-                String.format("Nice! I've marked this task as done:\n   %s",
-                        this.tasks.get(taskPosition).toString()));
-        System.out.println(toPrint);
+
+        Task task = this.tasks.get(taskPosition);
+        task.mark();
+        return task;
     }
 
-    public void unmarkTask(int taskPosition) throws MochiException {
+    public Task unmarkTask(int taskPosition) throws MochiException {
         if (taskPosition < 0 || taskPosition >= this.tasksCount) {
             throw new MochiException("Please input a valid task number!");
         }
-        this.tasks.get(taskPosition).unmark();
-        String toPrint = WrapMessage.wrap(
-                String.format("Ok, I've marked this task as not done yet:\n %s",
-                        this.tasks.get(taskPosition).toString()));
-        System.out.println(toPrint);
+        Task task = this.tasks.get(taskPosition);
+        task.unmark();
+        return task;
     }
 
-    // Function to print out all contents in the Task array
-    public void printList() {
-        String toPrint = "Here are the tasks in your list:";
+    @Override
+    public String toString() {
+        String result = "";
         for (int i = 0; i < this.tasks.size(); i++) {
-            toPrint = toPrint.concat(String.format("\n%d.%s", i + 1, this.tasks.get(i).toString()));
+            result = result.concat(String.format("%d.%s\n", i + 1, this.tasks.get(i).toString()));
         }
-        // Wrap final message and print
-        System.out.println(WrapMessage.wrap(toPrint));
+        return result.trim();
     }
 }

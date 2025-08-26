@@ -67,7 +67,6 @@ public class Ui {
             testTasks.addTask("deadline return book /by today");
             ui.notifyAddTask(testTasks.getTasks().get(1).toString(), 2);
 
-            testTasks.printList();
             ui.showTasks(testTasks);
 
             Task temp = testTasks.getTasks().get(1);
