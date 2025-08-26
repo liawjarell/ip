@@ -1,5 +1,9 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadlines extends Task {
-    protected String by;
+    protected LocalDateTime by;
 
     public Deadlines(String description) throws MochiException {
         // Split at /by to get title of task.
@@ -19,14 +23,16 @@ public class Deadlines extends Task {
 
         }
 
-        this.by = parts[1];
+        this.by = Parser.stringToLocalDateTime(parts[1]);
     }
 
     public Deadlines(String description, boolean isCompleted, String by) throws MochiException{
         super(description);
         this.isCompleted = isCompleted;
-        this.by = by;
+//        this.by = Parser.stringToLocalDateTime(by);
+        this.by = LocalDateTime.parse(by);
     }
+
 
     public static Deadlines parseString(String toParse) throws MochiException{
         String[] result = toParse.strip().split(" \\| ", 3);
@@ -37,11 +43,12 @@ public class Deadlines extends Task {
     @Override
     public String toSaveString() {
         return String.format("D | %d | %s | %s",
-                this.isCompleted ? 1 : 0, this.description, this.by);
+                this.isCompleted ? 1 : 0, this.description, this.by.toString());
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        DateTimeFormatter byFormatter = DateTimeFormatter.ofPattern("MMM/dd/yyyy HHmm");
+        return "[D]" + super.toString() + " (by: " + by.format(byFormatter) + ")";
     }
 }
