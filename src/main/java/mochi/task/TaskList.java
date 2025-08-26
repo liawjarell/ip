@@ -1,3 +1,7 @@
+package mochi.task;
+
+import mochi.exception.MochiException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +27,7 @@ public class TaskList {
         return this.tasksCount;
     }
 
-    // Creates the relevant tasks from parsed input, and adds it to the TaskList.
+    // Creates the relevant tasks from parsed input, and adds it to the mochi.task.TaskList.
     public Task addTask(String[] input) throws MochiException {
         Task task = null;
 

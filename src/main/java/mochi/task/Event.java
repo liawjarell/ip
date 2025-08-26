@@ -1,3 +1,7 @@
+package mochi.task;
+
+import mochi.exception.MochiException;
+
 public class Event extends Task {
     protected String from;
     protected String to;
@@ -48,7 +52,7 @@ public class Event extends Task {
     }
 
     // Used after parsing from saved tasks.
-    public Event(String description, boolean isCompleted, String from, String to) throws MochiException{
+    public Event(String description, boolean isCompleted, String from, String to) throws MochiException {
         super(description);
         this.isCompleted = isCompleted;
         this.from = from;
@@ -56,7 +60,7 @@ public class Event extends Task {
     }
 
     // Used after parsing from saved tasks.
-    public static Event parseString(String toParse) throws MochiException{
+    public static Event parseString(String toParse) throws MochiException {
         String[] result = toParse.strip().split(" \\| ", 4);
 
         return new Event(result[1], result[0].equals("1"), result[2], result[3]);

@@ -1,3 +1,8 @@
+package mochi.parser;
+
+import mochi.Mochi;
+import mochi.exception.MochiException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -7,7 +12,7 @@ import java.time.format.DateTimeParseException;
 public class Parser {
 
     // Parses first input to determine command
-    public static void parseGeneralInput(Mochi mochi, String input) throws MochiException{
+    public static void parseGeneralInput(Mochi mochi, String input) throws MochiException {
         if (input.equals("bye")) {
             mochi.exit();
         } else if (input.equals("list")) {
@@ -35,7 +40,7 @@ public class Parser {
             // If task provided without description, splitting of string throws ArrayIndexOutfBoundsException
             description = input.split(" ",2)[1];
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new MochiException("Task description cannot be empty!");
+            throw new MochiException("mochi.task.Task description cannot be empty!");
         }
 
         switch (command) {
@@ -46,7 +51,7 @@ public class Parser {
         }
     }
 
-    public static void parseTodo(Mochi mochi, String command, String description) throws MochiException{
+    public static void parseTodo(Mochi mochi, String command, String description) throws MochiException {
         String[] results = {command, description};
         mochi.addTask(results);
     }
@@ -71,7 +76,7 @@ public class Parser {
         mochi.addTask(results);
     }
 
-    public static void parseEvent(Mochi mochi, String command, String input) throws MochiException{
+    public static void parseEvent(Mochi mochi, String command, String input) throws MochiException {
 
         // Checks if /from and /to exists
         int fromIndex = input.indexOf("/from");
@@ -106,7 +111,7 @@ public class Parser {
     }
 
     // Parsing for mark, unmark, delete commands
-    public static void parseNumberedAction(Mochi mochi, String input, String command) throws MochiException{
+    public static void parseNumberedAction(Mochi mochi, String input, String command) throws MochiException {
         int taskPosition = 0;
         try {
             taskPosition = Integer.parseInt(input.split(" ")[1]) - 1;
@@ -130,7 +135,7 @@ public class Parser {
         }
     }
 
-    // Parses a given string into a LocalDateTime object. For use in Deadlines.
+    // Parses a given string into a LocalDateTime object. For use in mochi.task.Deadlines.
     public static LocalDateTime stringToLocalDateTime(String dateTimeString) throws MochiException {
         LocalDateTime dateTime;
         LocalDate date;

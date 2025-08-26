@@ -1,3 +1,5 @@
+package mochi.ui;
+
 public class Messages {
 
     public static final String MESSAGE_WELCOME = "Hello! I'm MOCHI!\nWhat can I do for you?";

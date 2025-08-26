@@ -1,3 +1,12 @@
+package mochi;
+
+import mochi.storage.Storage;
+import mochi.task.TaskList;
+import mochi.parser.Parser;
+import mochi.ui.Ui;
+import mochi.exception.MochiException;
+import mochi.task.Task;
+
 import java.util.Scanner;
 
 public class Mochi {
@@ -33,41 +42,41 @@ public class Mochi {
         return this.tasks.getTasksCount();
     }
 
-    // Calls TaskList's printList()
+    // Calls mochi.task.TaskList's printList()
     public void printList() {
         ui.showTasks(this.tasks);
     }
 
-    // Calls TaskList's markTask()
-    public void markTask(int taskPosition) throws MochiException{
+    // Calls mochi.task.TaskList's markTask()
+    public void markTask(int taskPosition) throws MochiException {
         Task temp = this.tasks.markTask(taskPosition);
         ui.notifyMarkTask(temp.toString());
         this.saveTasks(this.tasks);
     }
 
-    // Calls TaskList's unmarkTask()
+    // Calls mochi.task.TaskList's unmarkTask()
     public void unmarkTask(int taskPosition) throws MochiException {
         Task temp = this.tasks.unmarkTask(taskPosition);
         ui.notifyUnmarkTask(temp.toString());
         this.saveTasks(this.tasks);
     }
 
-    // Takes in array of strings, containing parsed information about a Task to be created
+    // Takes in array of strings, containing parsed information about a mochi.task.Task to be created
     public void addTask(String[] input) throws MochiException {
         Task temp = this.tasks.addTask(input);
         ui.notifyAddTask(temp.toString(), this.tasks.getTasksCount());
         this.saveTasks(this.tasks);
     }
 
-    // Calls TaskList's deleteTask()
+    // Calls mochi.task.TaskList's deleteTask()
     public void deleteTask(int taskPosition) throws MochiException {
         Task temp = this.tasks.deleteTask(taskPosition);
         ui.notifyDeleteTask(temp.toString(), this.tasks.getTasksCount());
         this.saveTasks(this.tasks);
     }
 
-    // Calls Storage's saveTasks()
-    public void saveTasks(TaskList tasks) throws MochiException{
+    // Calls mochi.storage.Storage's saveTasks()
+    public void saveTasks(TaskList tasks) throws MochiException {
         this.storage.saveTasks(this.tasks.getTasks());
     }
 
@@ -87,7 +96,7 @@ public class Mochi {
     }
 
     public static void main(String[] args) {
-//        new Mochi().run();
+//        new mochi.Mochi().run();
         new Mochi("data/tasks.txt").run();
     }
 }
