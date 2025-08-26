@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadlines extends Task {
     protected LocalDateTime by;
 
+    // Constructor no longer in use.
     public Deadlines(String description) throws MochiException {
         // Split at /by to get title of task.
         super(description.split("\\s*/by\\s*", 2)[0]);
@@ -25,18 +26,19 @@ public class Deadlines extends Task {
         this.by = Parser.stringToLocalDateTime(parts[1]);
     }
 
+    public Deadlines(String[] result) throws MochiException {
+        super(result[1]);
+        this.by = Parser.stringToLocalDateTime(result[2]);
+    }
+
+    // Used after parsing from saved tasks.
     public Deadlines(String description, boolean isCompleted, String by) throws MochiException{
         super(description);
         this.isCompleted = isCompleted;
         this.by = LocalDateTime.parse(by);
     }
 
-    public Deadlines(String[] result) throws MochiException {
-        super(result[1]);
-        this.by = Parser.stringToLocalDateTime(result[2]);
-    }
-
-
+    // Used to parse from saved tasks
     public static Deadlines parseString(String toParse) throws MochiException{
         String[] result = toParse.strip().split(" \\| ", 3);
 

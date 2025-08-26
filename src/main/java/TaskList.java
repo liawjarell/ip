@@ -23,28 +23,7 @@ public class TaskList {
         return this.tasksCount;
     }
 
-    public Task addTask(String input) throws MochiException {
-        Task task = null;
-        String taskType = input.split(" ",2)[0];
-        String description = "";
-        try {
-            // If task is provided without description, splitting of string throws ArrayIndexOutofBoundsException
-            description = input.split(" ", 2)[1];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new MochiException("Task description cannot be empty!");
-        }
-
-        switch (taskType) {
-            case "todo" -> {task = new ToDos(description);}
-            case "deadline" -> {task = new Deadlines(description);}
-            case "event" -> {task = new Event(description);}
-        }
-
-        this.tasks.add(task);
-        this.tasksCount++;
-        return task;
-    }
-
+    // Creates the relevant tasks from parsed input, and adds it to the TaskList.
     public Task addTask(String[] input) throws MochiException {
         Task task = null;
 
@@ -61,10 +40,6 @@ public class TaskList {
     }
 
     public Task deleteTask(int taskPosition) throws MochiException {
-        if (taskPosition < 0 || taskPosition >= this.tasksCount) {
-            throw new MochiException("Please input a valid task number");
-        }
-
         Task task = this.tasks.get(taskPosition);
         this.tasks.remove(taskPosition);
         this.tasksCount--;
@@ -72,19 +47,12 @@ public class TaskList {
     }
 
     public Task markTask(int taskPosition)  throws MochiException {
-        if (taskPosition < 0 || taskPosition >= this.tasksCount) {
-            throw new MochiException("Please input a valid task number!");
-        }
-
         Task task = this.tasks.get(taskPosition);
         task.mark();
         return task;
     }
 
     public Task unmarkTask(int taskPosition) throws MochiException {
-        if (taskPosition < 0 || taskPosition >= this.tasksCount) {
-            throw new MochiException("Please input a valid task number!");
-        }
         Task task = this.tasks.get(taskPosition);
         task.unmark();
         return task;

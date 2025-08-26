@@ -2,6 +2,7 @@ public class Event extends Task {
     protected String from;
     protected String to;
 
+    // Default constructor, no longer in use
     public Event(String description) throws MochiException {
 
         // Split at /from to get title of task.
@@ -40,6 +41,13 @@ public class Event extends Task {
         this.to = to;
     }
 
+    public Event(String[] results) throws MochiException {
+        super(results[1]);
+        this.from = results[2];
+        this.to = results[3];
+    }
+
+    // Used after parsing from saved tasks.
     public Event(String description, boolean isCompleted, String from, String to) throws MochiException{
         super(description);
         this.isCompleted = isCompleted;
@@ -47,12 +55,7 @@ public class Event extends Task {
         this.to = to;
     }
 
-    public Event(String[] results) throws MochiException {
-        super(results[1]);
-        this.from = results[2];
-        this.to = results[3];
-    }
-
+    // Used after parsing from saved tasks.
     public static Event parseString(String toParse) throws MochiException{
         String[] result = toParse.strip().split(" \\| ", 4);
 
