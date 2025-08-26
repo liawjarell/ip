@@ -1,0 +1,11 @@
+C:\Users\jarel\CodingProjects\ip\src\main\java\mochi\Mochi.java
+C:\Users\jarel\CodingProjects\ip\src\main\java\mochi\exception\MochiException.java
+C:\Users\jarel\CodingProjects\ip\src\main\java\mochi\parser\Parser.java
+C:\Users\jarel\CodingProjects\ip\src\main\java\mochi\storage\Storage.java
+C:\Users\jarel\CodingProjects\ip\src\main\java\mochi\task\Deadlines.java
+C:\Users\jarel\CodingProjects\ip\src\main\java\mochi\task\Event.java
+C:\Users\jarel\CodingProjects\ip\src\main\java\mochi\task\Task.java
+C:\Users\jarel\CodingProjects\ip\src\main\java\mochi\task\TaskList.java
+C:\Users\jarel\CodingProjects\ip\src\main\java\mochi\task\ToDos.java
+C:\Users\jarel\CodingProjects\ip\src\main\java\mochi\ui\Messages.java
+C:\Users\jarel\CodingProjects\ip\src\main\java\mochi\ui\Ui.java

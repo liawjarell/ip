@@ -1,3 +1,11 @@
+package mochi.storage;
+
+import mochi.task.Deadlines;
+import mochi.task.Event;
+import mochi.task.Task;
+import mochi.task.ToDos;
+import mochi.exception.MochiException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,7 +21,7 @@ public class Storage {
     private File f;
 
     // Initialise a storage from the given filepath
-    public Storage(String filePath) throws MochiException{
+    public Storage(String filePath) throws MochiException {
         try {
             // Checks if data directory exists. If not, mkdir
             File dir = new File("data");
@@ -34,7 +42,7 @@ public class Storage {
     }
 
     // Parses tasks from file
-    public ArrayList<Task> readTasks() throws MochiException{
+    public ArrayList<Task> readTasks() throws MochiException {
 
         ArrayList<Task> temp = new ArrayList<>();
         try {

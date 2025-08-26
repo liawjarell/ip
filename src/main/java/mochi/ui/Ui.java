@@ -1,4 +1,6 @@
-import java.util.ArrayList;
+package mochi.ui;
+
+import mochi.task.TaskList;
 
 public class Ui {
 
@@ -55,9 +57,9 @@ public class Ui {
     }
 
     public static void main(String[] args) {
-//        Ui ui = new Ui();
+//        mochi.ui.Ui ui = new mochi.ui.Ui();
 //        try {
-//            TaskList testTasks = new TaskList(new ArrayList<>());
+//            mochi.task.TaskList testTasks = new mochi.task.TaskList(new ArrayList<>());
 //
 //            testTasks.addTask("todo read book");
 //            ui.notifyAddTask(testTasks.getTasks().get(0).toString(), 1);
@@ -73,12 +75,12 @@ public class Ui {
 //
 //            ui.showTasks(testTasks);
 //
-//            Task temp = testTasks.getTasks().get(1);
+//            mochi.task.Task temp = testTasks.getTasks().get(1);
 //            testTasks.deleteTask(1);
 //            ui.notifyDeleteTask(temp.toString(), 1);
 //
 //
-//        } catch (MochiException e) {
+//        } catch (mochi.exception.MochiException e) {
 //            ui.warn(e.getMessage());
 //        }
     }

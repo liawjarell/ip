@@ -1,10 +1,14 @@
+package mochi.task;
+
+import mochi.exception.MochiException;
+
 public class Task {
     protected String description;
     protected boolean isCompleted = false;
 
-    public Task(String description) throws MochiException{
+    public Task(String description) throws MochiException {
         if (description.isEmpty()) {
-            throw new MochiException("Task description cannot be empty!");
+            throw new MochiException("mochi.task.Task description cannot be empty!");
         }
         this.description = description;
     }
@@ -25,7 +29,7 @@ public class Task {
         return null;
     }
 
-    // Parses given string from storage, and creates respective Task Objects.
+    // Parses given string from storage, and creates respective mochi.task.Task Objects.
     public static Task parseString(String toParse) throws MochiException {
         return null;
     }
