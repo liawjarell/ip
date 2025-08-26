@@ -29,15 +29,6 @@ public class Mochi {
         ui.goodbye();
     }
 
-
-    // Starting message. Wrapped
-    private static final String HELLO_MESSAGE = WrapMessage.wrap(
-            "Hello! I'm MOCHI!\nWhat can i do for you?"
-    );
-
-    // Ending message. Wrapped
-    private static final String BYE_MESSAGE = WrapMessage.wrap("Bye. Hope to see you again!");
-
     // Calls TaskList's printList()
     public void printList() {
 //        this.tasks.printList();
