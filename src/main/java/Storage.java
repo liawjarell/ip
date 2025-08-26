@@ -59,11 +59,9 @@ public class Storage {
                 }
             }
         } catch (FileNotFoundException e) {
-//            System.out.println("File not found while reading tasks");
             throw new MochiException("File not found while reading tasks");
-        } catch (MochiException e) {
-            System.out.println(e.getMessage());
         }
+
         return temp;
     }
 
@@ -82,16 +80,4 @@ public class Storage {
         }
     }
 
-    // Function to print out all contents in the Task array. Copied from Mochi.java
-    private static void printList(ArrayList<Task> tasks) {
-        String toPrint = "Here are the tasks in your list:";
-        for (int i = 0; i < tasks.size(); i++) {
-//            if (tasks.get(i) == null) {
-//                break;
-//            }
-            toPrint = toPrint.concat(String.format("\n%d.%s", i + 1, tasks.get(i).toString()));
-        }
-        // Wrap final message and print
-        System.out.println(WrapMessage.wrap(toPrint));
-    }
 }
