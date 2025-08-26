@@ -1,5 +1,5 @@
 todo join sports club
-deadline borrow book /by tomorrow
+deadline borrow book /by 2025-10-12 1800
 event study /from 8pm /to 12am
 list
 mark 4

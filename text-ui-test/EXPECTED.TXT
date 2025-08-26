@@ -11,7 +11,7 @@
 
     ________________________________________________________________________________
     Got it. I've added this task:
-        [D][ ] borrow book (by: tomorrow)
+        [D][ ] borrow book (by: Oct/12/2025 1800)
     Now you have 5 tasks in the list
     ________________________________________________________________________________
 
@@ -24,10 +24,10 @@
     ________________________________________________________________________________
     Here are the tasks in your list:
     1.[T][X] read book
-    2.[D][ ] return book (by: June 6th)
+    2.[D][ ] return book (by: Sep/30/2025 0000)
     3.[E][X] project meeting (from: 2pm to: 5pm)
     4.[T][ ] join sports club
-    5.[D][ ] borrow book (by: tomorrow)
+    5.[D][ ] borrow book (by: Oct/12/2025 1800)
     6.[E][ ] study (from: 8pm to: 12am)
     ________________________________________________________________________________
 
@@ -38,7 +38,7 @@
 
     ________________________________________________________________________________
     Nice! I've marked this task as done:
-       [D][X] borrow book (by: tomorrow)
+       [D][X] borrow book (by: Oct/12/2025 1800)
     ________________________________________________________________________________
 
     ________________________________________________________________________________
@@ -49,10 +49,10 @@
     ________________________________________________________________________________
     Here are the tasks in your list:
     1.[T][X] read book
-    2.[D][ ] return book (by: June 6th)
+    2.[D][ ] return book (by: Sep/30/2025 0000)
     3.[E][X] project meeting (from: 2pm to: 5pm)
     4.[T][X] join sports club
-    5.[D][X] borrow book (by: tomorrow)
+    5.[D][X] borrow book (by: Oct/12/2025 1800)
     6.[E][X] study (from: 8pm to: 12am)
     ________________________________________________________________________________
 
@@ -64,23 +64,23 @@
     ________________________________________________________________________________
     Here are the tasks in your list:
     1.[T][X] read book
-    2.[D][ ] return book (by: June 6th)
+    2.[D][ ] return book (by: Sep/30/2025 0000)
     3.[E][X] project meeting (from: 2pm to: 5pm)
     4.[T][ ] join sports club
-    5.[D][X] borrow book (by: tomorrow)
+    5.[D][X] borrow book (by: Oct/12/2025 1800)
     6.[E][X] study (from: 8pm to: 12am)
     ________________________________________________________________________________
 
     ________________________________________________________________________________
     Noted. I've removed this task:
-        [D][X] borrow book (by: tomorrow)
+        [D][X] borrow book (by: Oct/12/2025 1800)
     Now you have 5 tasks in the list.
     ________________________________________________________________________________
 
     ________________________________________________________________________________
     Here are the tasks in your list:
     1.[T][X] read book
-    2.[D][ ] return book (by: June 6th)
+    2.[D][ ] return book (by: Sep/30/2025 0000)
     3.[E][X] project meeting (from: 2pm to: 5pm)
     4.[T][ ] join sports club
     5.[E][X] study (from: 8pm to: 12am)
