@@ -2,10 +2,31 @@ package mochi.task;
 
 import mochi.exception.MochiException;
 
+/**
+ * Task class for storing and retrieving tasks.
+ * It also provides methods for manipulating the task, such as marking, unmarking, and printing.
+ * The class is meant to be abstract and is not meant to be instantiated directly.
+ * Instead, it is extended by other task types such as Events, ToDos, and Deadlines.
+ * The class is also responsible for parsing and saving tasks to storage.
+ */
 public class Task {
+    /**
+     * The description of the task.
+     */
     protected String description;
+
+    /**
+     * The status of the task.
+     */
     protected boolean isCompleted = false;
 
+    /**
+     * Initializes a new instance of the Task class.
+     * The description of the task cannot be empty.
+     *
+     * @param description The description of the task.
+     * @throws MochiException If the description is empty.
+     */
     public Task(String description) throws MochiException {
         if (description.isBlank()) {
             throw new MochiException("Task description cannot be empty!");
@@ -13,23 +34,45 @@ public class Task {
         this.description = description;
     }
 
+    /**
+     * Marks the task as completed.
+     */
     public void mark() {
         this.isCompleted = true;
     }
 
+    /**
+     * Unmarks the task as incomplete.
+     */
     public void unmark() {
         this.isCompleted = false;
     }
 
+    /**
+     * Retrieves the status icon for the task.
+     *
+     * @return The status icon for the task.
+     */
     public String getStatusIcon() {
         return (isCompleted ? "X" : " ");
     }
 
+    /**
+     * Returns a string representation of the task for saving to storage.
+     *
+     * @return A string representation of the task for saving to storage.
+     */
     public String toSaveString() {
         return null;
     }
 
-    // Parses given string from storage, and creates respective mochi.task.Task Objects.
+    /**
+     * Parses a string representation of a task and returns the corresponding task object.
+     *
+     * @param toParse The string representation of the task to be parsed.
+     * @return The parsed task object.
+     * @throws MochiException If an error occurs while parsing the task.
+     */
     public static Task parseString(String toParse) throws MochiException {
         return null;
     }

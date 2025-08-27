@@ -15,12 +15,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Storage class for storing and retrieving tasks from a file.
+ * This class is responsible for saving and retrieving tasks from a specified file path.
+ * The storage facilitates the persistence of task information across program executions.
+ */
 public class Storage {
 
-    // Constants
+    /**
+     * Represents the file used to store and retrieve task data.
+     * This object points to the file location where task information is saved and loaded.
+     */
     private File f;
 
-    // Initialise a storage from the given filepath
+    /**
+     * Initializes a storage instance for managing tasks data based on the specified file path.
+     * This constructor ensures that the necessary directories and files for storage are created
+     * if they do not already exist.
+     *
+     * @param filePath The file path where the storage file should be created or accessed.
+     * @throws MochiException If an I/O error occurs during the file or storage initialization.
+     */
     public Storage(String filePath) throws MochiException {
         try {
             // Checks if data directory exists. If not, mkdir
@@ -36,12 +51,21 @@ public class Storage {
 
             this.f = temp;
         } catch (IOException e) {
-//            System.out.println("Error encountered during storage creation: " + e.getMessage());
             throw new MochiException("Error encountered during storage initialisation: " + e.getMessage());
         }
     }
 
-    // Parses tasks from file
+    /**
+     * Reads tasks from the instanced file and parses them into a list of Task objects.
+     * The tasks are expected to be stored in a specific format where the
+     * first part indicates the task type (e.g., "T" for ToDos, "D" for Deadlines, "E" for Events),
+     * followed by relevant task details. Invalid or malformed task entries
+     * will throw an exception.
+     *
+     * @return An ArrayList of Task objects parsed from the file. It contains
+     *         tasks of type ToDos, Deadlines, or Event, based on the stored data.
+     * @throws MochiException If there is an error while reading or parsing the file.
+     */
     public ArrayList<Task> readTasks() throws MochiException {
 
         ArrayList<Task> temp = new ArrayList<>();
@@ -73,6 +97,16 @@ public class Storage {
         return temp;
     }
 
+    /**
+     * Saves a list of tasks to the instanced file.
+     * This method serializes the provided list of tasks into a string format
+     * suitable for storage and writes it to the designated file.
+     *
+     * @param tasks The list of tasks to be saved to the file. Each task in the list
+     *              should implement the {@code toSaveString} method to produce
+     *              its serialized representation.
+     * @throws MochiException If an error occurs while writing the tasks to the file.
+     */
     public void saveTasks(List<Task> tasks) throws MochiException {
         String temp = "";
         for (int i = 0; i < tasks.size(); i++) {
