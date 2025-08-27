@@ -9,6 +9,11 @@ import mochi.task.Task;
 
 import java.util.Scanner;
 
+/**
+ * Mochi is a task management application that facilitates the management of tasks
+ * in a list. It provides a user interface to interact with the user and display
+ * the list of tasks. It also facilitates the persistence of tasks across program executions.
+ */
 public class Mochi {
 
     /**
