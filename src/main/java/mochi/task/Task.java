@@ -7,8 +7,8 @@ public class Task {
     protected boolean isCompleted = false;
 
     public Task(String description) throws MochiException {
-        if (description.isEmpty()) {
-            throw new MochiException("mochi.task.Task description cannot be empty!");
+        if (description.isBlank()) {
+            throw new MochiException("Task description cannot be empty!");
         }
         this.description = description;
     }
