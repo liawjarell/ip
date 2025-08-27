@@ -114,6 +114,7 @@ public class Parser {
 
     /**
      * Parses the "event" command and description provided by the user, and adds the task to the Mochi instance.
+     *
      * @param mochi The Mochi instance to which the task will be added.
      * @param command The command string representing the type of task ("event" in this case).
      * @param input The description of the task to be added.
