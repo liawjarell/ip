@@ -1,5 +1,9 @@
 package mochi.ui;
 
+/**
+ * Messages class for storing messages to be displayed to the user.
+ * The class is meant to be static and is not meant to be instantiated.
+ */
 public class Messages {
 
     public static final String MESSAGE_WELCOME = "Hello! I'm MOCHI!\nWhat can I do for you?";
