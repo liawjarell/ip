@@ -6,49 +6,59 @@ import mochi.parser.Parser;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deadlines class for storing and retrieving tasks.
+ */
 public class Deadlines extends Task {
+    /**
+     * The deadline of the task.
+     */
     protected LocalDateTime by;
 
-    // Constructor no longer in use.
-    public Deadlines(String description) throws MochiException {
-        // Split at /by to get title of task.
-        super(description.split("\\s*/by\\s*", 2)[0]);
-
-        int byIndex = description.indexOf("/by");
-        // Checks if /by exists
-        if (byIndex == -1) {
-            throw new MochiException("Please specify a deadline using /by");
-        }
-
-        // First part title, second part deadline
-        String[] parts = description.split("\\s*/by\\s*", 2);
-
-        if (parts[1].isEmpty()) {
-            throw new MochiException("Please specify a date/time after /by");
-        }
-
-        this.by = Parser.stringToLocalDateTime(parts[1]);
-    }
-
+    /**
+     * Main constructor for Deadline.
+     *
+     * @param result The parsed input from Parser.
+     * @throws MochiException If an error occurs while parsing the string.
+     */
     public Deadlines(String[] result) throws MochiException {
         super(result[1]);
         this.by = Parser.stringToLocalDateTime(result[2]);
     }
 
-    // Used after parsing from saved tasks.
+    /**
+     * Alternative constructor for Deadline.
+     * Used after parsing string from storage.
+     *
+     * @param description The description of the task.
+     * @param isCompleted The status of the task.
+     * @param by The deadline of the task.
+     * @throws MochiException If an error occurs while initialising the task.
+     */
     public Deadlines(String description, boolean isCompleted, String by) throws MochiException {
         super(description);
         this.isCompleted = isCompleted;
         this.by = LocalDateTime.parse(by);
     }
 
-    // Used to parse from saved tasks
+    /**
+     * Parses a string from storage to create a new Deadlines object.
+     *
+     * @param toParse The string to be parsed.
+     * @return The parsed Deadlines object.
+     * @throws MochiException If an error occurs while parsing the string.
+     */
     public static Deadlines parseString(String toParse) throws MochiException {
         String[] result = toParse.strip().split(" \\| ", 3);
 
         return new Deadlines(result[1], result[0].equals("1"), result[2]);
     }
 
+    /**
+     * Converts the Deadlines object to a string to be saved to storage.
+     *
+     * @return A string representation of the Deadlines object.
+     */
     @Override
     public String toSaveString() {
         return String.format("D | %d | %s | %s",
