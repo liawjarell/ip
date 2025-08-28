@@ -72,7 +72,6 @@ public class Parser {
             case "todo" -> parseTodo(mochi, command, description);
             case "deadline" -> parseDeadline(mochi, command, description);
             case "event" -> parseEvent(mochi, command, description);
-
         }
     }
 
