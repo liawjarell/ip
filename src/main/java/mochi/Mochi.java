@@ -158,6 +158,10 @@ public class Mochi {
         this.saveTasks(this.tasks);
     }
 
+    public void find(String keyword) {
+
+    }
+
     /**
      * Saves the current list of tasks to storage.
      * This method delegates the task saving functionality to the storage component.

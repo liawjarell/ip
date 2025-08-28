@@ -38,6 +38,9 @@ public class Parser {
             case "todo", "deadline", "event":
                 parseAddTask(mochi, input, command);
                 break;
+            case "find":
+                parseFindTask(mochi, input, command);
+                break;
             default:
                 throw new MochiException("Oops! I'm sorry but I don't know what that means. Try again!");
             }
@@ -186,6 +189,17 @@ public class Parser {
             mochi.deleteTask(taskPosition);
             break;
         }
+    }
+
+    public static void parseFindTask(Mochi mochi, String input, String command) throws MochiException {
+        String keyword = "";
+        try {
+            keyword = input.split(" ")[1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new MochiException("Please input a keyword after find!");
+        }
+        keyword = keyword.trim();
+        mochi.find(keyword);
     }
 
 
