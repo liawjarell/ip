@@ -158,8 +158,17 @@ public class Mochi {
         this.saveTasks(this.tasks);
     }
 
+    /**
+     * Finds tasks that match the specified keyword and displays them to the user.
+     * This method searches the internal task list for tasks that contain the specified keyword, and returns
+     * it as a new TaskList instance. If no tasks are found, a corresponding message is displayed to indicate
+     * that no tasks were found.
+     *
+     * @param keyword The keyword to search for in the task descriptions.
+     */
     public void find(String keyword) {
-
+        TaskList newTasks = this.tasks.find(keyword);
+        ui.showMatchingTasks(newTasks);
     }
 
     /**

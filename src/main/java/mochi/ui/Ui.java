@@ -114,6 +114,21 @@ public class Ui {
         }
     }
 
+    /**
+     * Displays the tasks that match the user's query.
+     * If the task list is empty, a corresponding message is displayed
+     * to indicate that there are no matching tasks.
+     *
+     * @param tasks The task list containing the matching tasks to be displayed.
+     */
+    public void showMatchingTasks(TaskList tasks) {
+        if (tasks.isEmpty()) {
+            this.wrapPrint(Messages.MESSAGE_EMPTY_LIST);
+        } else {
+            this.wrapPrint(String.format(Messages.MESSAGE_LIST_PRINT, tasks.toString()));
+        }
+    }
+
     public static void main(String[] args) {
 //        mochi.ui.Ui ui = new mochi.ui.Ui();
 //        try {

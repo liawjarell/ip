@@ -122,6 +122,23 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Filters the tasks in the current task list based on whether their descriptions
+     * contain the specified keyword. The comparison is case-insensitive.
+     *
+     * @param keyword The keyword to search for in the task descriptions.
+     * @return A new TaskList containing tasks whose descriptions contain the specified keyword.
+     */
+    public TaskList find(String keyword) {
+        TaskList newTasks = new TaskList(new ArrayList<>());
+        for (Task task : this.tasks) {
+            if (task.descriptionContainsKeyword(keyword)) {
+                newTasks.tasks.add(task);
+            }
+        }
+        return newTasks;
+    }
+
     @Override
     public String toString() {
         String result = "";

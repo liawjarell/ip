@@ -29,7 +29,8 @@ public class Parser {
         } else if (input.equals("list")) {
             mochi.printList();
         } else {
-            String command = input.split(" ", 2)[0];
+            // Takes care of white spaces before description
+            String command = input.split("\s+", 2)[0];
 
             switch (command) {
             case "mark", "unmark", "delete":
@@ -39,6 +40,7 @@ public class Parser {
                 parseAddTask(mochi, input, command);
                 break;
             case "find":
+                System.out.println(input);
                 parseFindTask(mochi, input, command);
                 break;
             default:
@@ -61,7 +63,7 @@ public class Parser {
         String description = "";
         try {
             // If task provided without description, splitting of string throws ArrayIndexOutfBoundsException
-            description = input.split(" ",2)[1];
+            description = input.split(" ",2)[1].strip();
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new MochiException("Task description cannot be empty!");
         }
@@ -191,10 +193,18 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the "find" command and retrieves tasks from the Mochi instance that match the provided keyword.
+     *
+     * @param mochi The Mochi instance used for managing and searching tasks.
+     * @param input The full input string provided by the user, which includes the command and keyword.
+     * @param command The command string, which in this case is expected to be "find".
+     * @throws MochiException If the input does not contain a keyword after the command.
+     */
     public static void parseFindTask(Mochi mochi, String input, String command) throws MochiException {
         String keyword = "";
         try {
-            keyword = input.split(" ")[1];
+            keyword = input.split(" ", 2)[1];
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new MochiException("Please input a keyword after find!");
         }
