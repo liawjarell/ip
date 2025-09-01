@@ -60,7 +60,7 @@ public class Event extends Task {
 
     /**
      * Converts the Event object to a string to be saved to storage.
-
+     *
      * @return A string representation of the Event object.
      */
     @Override

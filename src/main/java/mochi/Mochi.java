@@ -1,13 +1,14 @@
 package mochi;
 
-import mochi.storage.Storage;
-import mochi.task.TaskList;
-import mochi.parser.Parser;
-import mochi.ui.Ui;
-import mochi.exception.MochiException;
-import mochi.task.Task;
-
 import java.util.Scanner;
+
+import mochi.exception.MochiException;
+import mochi.parser.Parser;
+import mochi.storage.Storage;
+import mochi.task.Task;
+import mochi.task.TaskList;
+import mochi.ui.Ui;
+
 
 /**
  * Mochi is a task management application that facilitates the management of tasks
@@ -89,7 +90,9 @@ public class Mochi {
      *
      * @return The total count of tasks currently stored.
      */
-    public int getTasksCount() { return this.tasks.getTasksCount(); }
+    public int getTasksCount() {
+        return this.tasks.getTasksCount();
+    }
 
     /**
      * Prints the list of tasks currently stored in the application.
@@ -210,7 +213,6 @@ public class Mochi {
      *             Currently not used by the Mochi application.
      */
     public static void main(String[] args) {
-//        new mochi.Mochi().run();
         new Mochi("data/tasks.txt").run();
     }
 }

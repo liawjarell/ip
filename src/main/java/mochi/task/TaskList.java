@@ -1,9 +1,10 @@
 package mochi.task;
 
-import mochi.exception.MochiException;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import mochi.exception.MochiException;
+
 
 /**
  * TaskList class for storing and retrieving tasks.
@@ -62,7 +63,7 @@ public class TaskList {
 
     /**
      * Creates a new instance of the appropriate task type and adds it to the task list.
-
+     *
      * @param input The input string array representing the task to be added.
      * @return The newly created task.
      * @throws MochiException If an error occurs while creating the task.
@@ -71,9 +72,17 @@ public class TaskList {
         Task task = null;
 
         switch (input[0]) {
-        case "todo" -> {task = new ToDos(input);}
-        case "deadline" -> {task = new Deadlines(input);}
-        case "event" -> {task = new Event(input);}
+        case "todo":
+            task = new ToDos(input);
+            break;
+        case "deadline":
+            task = new Deadlines(input);
+            break;
+        case "event":
+            task = new Event(input);
+            break;
+        default:
+            throw new MochiException("Oops! I'm sorry but I don't know what that means. Try again!");
         }
 
         this.tasks.add(task);
@@ -84,7 +93,7 @@ public class TaskList {
 
     /**
      * Deletes a task at the specified position in the task list.
-
+     *
      * @param taskPosition The zero-based index of the task to be deleted.
      * @return The deleted task.
      * @throws MochiException If the specified task position is invalid, or any error occurs while deleting the task.
@@ -103,7 +112,7 @@ public class TaskList {
      * @return The marked task.
      * @throws MochiException If the specified task position is invalid, or any error occurs while marking the task.
      */
-    public Task markTask(int taskPosition)  throws MochiException {
+    public Task markTask(int taskPosition) throws MochiException {
         Task task = this.tasks.get(taskPosition);
         task.mark();
         return task;

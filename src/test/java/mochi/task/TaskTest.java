@@ -1,9 +1,11 @@
 package mochi.task;
 
-import mochi.exception.MochiException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import mochi.exception.MochiException;
 
 public class TaskTest {
 

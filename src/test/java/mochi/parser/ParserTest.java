@@ -1,11 +1,12 @@
 package mochi.parser;
 
-import mochi.StubMochi;
-import mochi.exception.MochiException;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import mochi.StubMochi;
+import mochi.exception.MochiException;
 
 public class ParserTest {
 
@@ -40,7 +41,7 @@ public class ParserTest {
     }
 
     @Test
-    public void parseGeneralInput_numberedTask_invalidIndex_exceptionThrown() {
+    public void parseGeneralInput_numberedTask_invalidIndexExceptionThrown() {
         StubMochi mochi = new StubMochi();
         mochi.seedTasks(2);
 

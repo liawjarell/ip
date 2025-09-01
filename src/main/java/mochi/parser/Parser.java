@@ -1,13 +1,15 @@
 package mochi.parser;
 
-import mochi.Mochi;
-import mochi.exception.MochiException;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import mochi.Mochi;
+import mochi.exception.MochiException;
+
+
 
 /**
  * Parser class for parsing user input.
@@ -63,15 +65,23 @@ public class Parser {
         String description = "";
         try {
             // If task provided without description, splitting of string throws ArrayIndexOutfBoundsException
-            description = input.split(" ",2)[1].strip();
+            description = input.split(" ", 2)[1].strip();
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new MochiException("Task description cannot be empty!");
         }
 
         switch (command) {
-            case "todo" -> parseTodo(mochi, command, description);
-            case "deadline" -> parseDeadline(mochi, command, description);
-            case "event" -> parseEvent(mochi, command, description);
+        case "todo":
+            parseTodo(mochi, command, description);
+            break;
+        case "deadline":
+            parseDeadline(mochi, command, description);
+            break;
+        case "event":
+            parseEvent(mochi, command, description);
+            break;
+        default:
+            throw new MochiException("Oops! I'm sorry but I don't know what that means. Try again!");
         }
     }
 
@@ -105,9 +115,9 @@ public class Parser {
 
         // Second part title, Third part deadline
         String[] results = {
-                command,
-                input.split("\\s*/by\\s*", 2)[0],
-                input.split("\\s*/by\\s*", 2)[1]};
+            command,
+            input.split("\\s*/by\\s*", 2)[0],
+            input.split("\\s*/by\\s*", 2)[1]};
 
         if (results[2].isEmpty()) {
             throw new MochiException("Please specify a date/time after /by");
@@ -189,6 +199,7 @@ public class Parser {
         case "delete":
             mochi.deleteTask(taskPosition);
             break;
+        default:
         }
     }
 
@@ -251,12 +262,12 @@ public class Parser {
             // If timeString does not exist, ArrayIndexOutOfBoundsException will be thrown.
             String timeString = dateTimeParts[1];
             if (timeString.isEmpty()) {
-                dateTime = date.atTime(23,59);
+                dateTime = date.atTime(23, 59);
             } else {
                 dateTime = date.atTime(LocalTime.parse(timeString, DateTimeFormatter.ofPattern("HHmm")));
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            dateTime = date.atTime(23,59);
+            dateTime = date.atTime(23, 59);
         } catch (DateTimeParseException e) {
             throw new MochiException("Please input a proper date and time in the format [yyyy/MM/dd HHmm]");
         }

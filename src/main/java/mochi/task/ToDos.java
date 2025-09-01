@@ -48,7 +48,7 @@ public class ToDos extends Task {
 
     /**
      * Converts the ToDos object to a string to be saved to storage.
-
+     *
      * @return A string representation of the ToDos object.
      */
     @Override
