@@ -1,19 +1,19 @@
 package mochi.storage;
 
-import mochi.task.Deadlines;
-import mochi.task.Event;
-import mochi.task.Task;
-import mochi.task.ToDos;
-import mochi.exception.MochiException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import mochi.exception.MochiException;
+import mochi.task.Deadlines;
+import mochi.task.Event;
+import mochi.task.Task;
+import mochi.task.ToDos;
+
 
 /**
  * Storage class for storing and retrieving tasks from a file.
@@ -117,7 +117,6 @@ public class Storage {
             fw.write(temp);
             fw.close();
         } catch (IOException e) {
-//            System.out.println("Error encountered while saving tasks: " + e.getMessage());
             throw new MochiException("Error encountered while saving tasks: " + e.getMessage());
         }
     }

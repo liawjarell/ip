@@ -5,6 +5,7 @@ import mochi.task.TaskList;
 /**
  * Ui class for displaying messages to the user.
  */
+@SuppressWarnings("checkstyle:CommentsIndentation")
 public class Ui {
 
     /**
@@ -129,34 +130,34 @@ public class Ui {
         }
     }
 
-    public static void main(String[] args) {
-//        mochi.ui.Ui ui = new mochi.ui.Ui();
-//        try {
-//            mochi.task.TaskList testTasks = new mochi.task.TaskList(new ArrayList<>());
-//
-//            testTasks.addTask("todo read book");
-//            ui.notifyAddTask(testTasks.getTasks().get(0).toString(), 1);
-//
-//            testTasks.markTask(0);
-//            ui.notifyMarkTask(testTasks.getTasks().get(0).toString());
-//
-//            testTasks.unmarkTask(0);
-//            ui.notifyUnmarkTask(testTasks.getTasks().get(0).toString());
-//
-//            testTasks.addTask("deadline return book /by today");
-//            ui.notifyAddTask(testTasks.getTasks().get(1).toString(), 2);
-//
-//            ui.showTasks(testTasks);
-//
-//            mochi.task.Task temp = testTasks.getTasks().get(1);
-//            testTasks.deleteTask(1);
-//            ui.notifyDeleteTask(temp.toString(), 1);
-//
-//
-//        } catch (mochi.exception.MochiException e) {
-//            ui.warn(e.getMessage());
-//        }
-    }
+    //    public static void main(String[] args) {
+    //        mochi.ui.Ui ui = new mochi.ui.Ui();
+    //        try {
+    //            mochi.task.TaskList testTasks = new mochi.task.TaskList(new ArrayList<>());
+    //
+    //            testTasks.addTask("todo read book");
+    //            ui.notifyAddTask(testTasks.getTasks().get(0).toString(), 1);
+    //
+    //            testTasks.markTask(0);
+    //            ui.notifyMarkTask(testTasks.getTasks().get(0).toString());
+    //
+    //            testTasks.unmarkTask(0);
+    //            ui.notifyUnmarkTask(testTasks.getTasks().get(0).toString());
+    //
+    //            testTasks.addTask("deadline return book /by today");
+    //            ui.notifyAddTask(testTasks.getTasks().get(1).toString(), 2);
+    //
+    //            ui.showTasks(testTasks);
+    //
+    //            mochi.task.Task temp = testTasks.getTasks().get(1);
+    //            testTasks.deleteTask(1);
+    //            ui.notifyDeleteTask(temp.toString(), 1);
+    //
+    //
+    //        } catch (mochi.exception.MochiException e) {
+    //            ui.warn(e.getMessage());
+    //        }
+    //    }
 
 
 }

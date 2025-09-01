@@ -5,19 +5,25 @@ import java.util.List;
 
 import mochi.task.TaskList;
 
+/**
+ * StubMochi class for testing.
+ */
 public class StubMochi extends Mochi {
 
-    boolean exitRan = false;
-    boolean printListRan = false;
-    boolean markTaskRan = false;
-    boolean unmarkTaskRan = false;
-    boolean addTaskRan = false;
-    boolean deleteTaskRan = false;
-    boolean saveTasksRan = false;
+    private boolean exitRan = false;
+    private boolean printListRan = false;
+    private boolean markTaskRan = false;
+    private boolean unmarkTaskRan = false;
+    private boolean addTaskRan = false;
+    private boolean deleteTaskRan = false;
+    private boolean saveTasksRan = false;
 
     // Simple in-memory representation of tasks for assertions in tests
     private final List<String> stubTasks = new ArrayList<>();
 
+    /**
+     * Creates a new instance of the StubMochi class.
+     */
     public StubMochi() {
         // Provide a dummy path; the real Mochi constructor handles its own exceptions/logging.
         super("data/test-tasks.txt");
@@ -84,7 +90,10 @@ public class StubMochi extends Mochi {
         return deleteTaskRan;
     }
 
-    // Seed in-memory tasks so numbered actions don't fail on bounds
+    /**
+     * Seeds the task list with a specified number of tasks.
+     * @param count The number of tasks to be seeded.
+     */
     public void seedTasks(int count) {
         for (int i = 0; i < count; i++) {
             stubTasks.add("dummy " + (i + 1));

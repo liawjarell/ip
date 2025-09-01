@@ -1,9 +1,11 @@
 package mochi.task;
 
-import mochi.exception.MochiException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import mochi.exception.MochiException;
 
 public class ToDosTest {
 
@@ -47,7 +49,7 @@ public class ToDosTest {
     }
 
     @Test
-    public void toString_returnsCorrectFormat() throws MochiException{
+    public void toString_returnsCorrectFormat() throws MochiException {
         String[] result = {"todo", "read book"};
         ToDos todo = new ToDos(result);
         assertEquals("[T][ ] read book", todo.toString());
