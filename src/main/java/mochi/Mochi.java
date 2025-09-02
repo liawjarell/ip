@@ -75,14 +75,23 @@ public class Mochi {
     }
 
     /**
+     * Prints a welcome message to the user.
+     *
+     * @return A welcome message to be displayed to the user.
+     */
+    public String welcome() {
+        return ui.welcome();
+    }
+
+    /**
      * Terminates the Mochi application.
      * This method performs cleanup actions before exiting the program.
      * It ensures that a goodbye message is displayed to the user via the user interface
      * and then ends the program by invoking {@code System.exit(0)}.
      */
-    public void exit() {
-        ui.goodbye();
-        System.exit(0);
+    public String exit() {
+        return ui.goodbye();
+        // System.exit(0);
     }
 
     /**
@@ -101,8 +110,8 @@ public class Mochi {
      * If the task list is empty, a corresponding message is displayed to indicate
      * that there are no tasks.
      */
-    public void printList() {
-        ui.showTasks(this.tasks);
+    public String printList() {
+        return ui.showTasks(this.tasks);
     }
 
     /**
@@ -113,10 +122,10 @@ public class Mochi {
      * @param taskPosition The zero-based index of the task to be marked as completed.
      * @throws MochiException If the specified task position is invalid, or any error occurs while marking the task.
      */
-    public void markTask(int taskPosition) throws MochiException {
+    public String markTask(int taskPosition) throws MochiException {
         Task temp = this.tasks.markTask(taskPosition);
-        ui.notifyMarkTask(temp.toString());
         this.saveTasks(this.tasks);
+        return ui.notifyMarkTask(temp.toString());
     }
 
     /**
@@ -127,10 +136,10 @@ public class Mochi {
      * @param taskPosition The zero-based index of the task to be unmarked as incomplete.
      * @throws MochiException If the specified task position is invalid, or any error occurs while unmarking the task.
      */
-    public void unmarkTask(int taskPosition) throws MochiException {
+    public String unmarkTask(int taskPosition) throws MochiException {
         Task temp = this.tasks.unmarkTask(taskPosition);
-        ui.notifyUnmarkTask(temp.toString());
         this.saveTasks(this.tasks);
+        return ui.notifyUnmarkTask(temp.toString());
     }
 
     /**
@@ -141,10 +150,10 @@ public class Mochi {
      * @param input The input string representing the task to be added.
      * @throws MochiException If any error occurs while parsing the input or adding the task.
      */
-    public void addTask(String[] input) throws MochiException {
+    public String addTask(String[] input) throws MochiException {
         Task temp = this.tasks.addTask(input);
-        ui.notifyAddTask(temp.toString(), this.tasks.getTasksCount());
         this.saveTasks(this.tasks);
+        return ui.notifyAddTask(temp.toString(), this.tasks.getTasksCount());
     }
 
     /**
@@ -155,10 +164,10 @@ public class Mochi {
      * @param taskPosition The zero-based index of the task to be deleted.
      * @throws MochiException If the specified task position is invalid, or any error occurs while deleting the task.
      */
-    public void deleteTask(int taskPosition) throws MochiException {
+    public String deleteTask(int taskPosition) throws MochiException {
         Task temp = this.tasks.deleteTask(taskPosition);
-        ui.notifyDeleteTask(temp.toString(), this.tasks.getTasksCount());
         this.saveTasks(this.tasks);
+        return ui.notifyDeleteTask(temp.toString(), this.tasks.getTasksCount());
     }
 
     /**
@@ -169,9 +178,9 @@ public class Mochi {
      *
      * @param keyword The keyword to search for in the task descriptions.
      */
-    public void find(String keyword) {
+    public String find(String keyword) {
         TaskList newTasks = this.tasks.find(keyword);
-        ui.showMatchingTasks(newTasks);
+        return ui.showMatchingTasks(newTasks);
     }
 
     /**
@@ -204,6 +213,14 @@ public class Mochi {
         }
     }
 
+    public String getResponse(String input) {
+        try {
+            return Parser.parseGeneralInput(this, input);
+        } catch (MochiException e) {
+            return e.getMessage();
+        }
+    }
+
     /**
      * The entry point for the Mochi task management application.
      * This method initializes the application with a specified task storage file
@@ -213,6 +230,6 @@ public class Mochi {
      *             Currently not used by the Mochi application.
      */
     public static void main(String[] args) {
-        new Mochi("data/tasks.txt").run();
+    //        new Mochi("data/tasks.txt").run();
     }
 }

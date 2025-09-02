@@ -30,33 +30,39 @@ public class StubMochi extends Mochi {
     }
 
     @Override
-    public void exit() {
+    public String exit() {
         this.exitRan = true;
+        return "";
     }
 
     @Override
-    public void printList() {
+    public String printList() {
         this.printListRan = true;
+        return "";
     }
 
     @Override
-    public void markTask(int taskPosition) {
+    public String markTask(int taskPosition) {
         this.markTaskRan = true;
+        return "";
     }
 
     @Override
-    public void unmarkTask(int taskPosition) {
+    public String unmarkTask(int taskPosition) {
         this.unmarkTaskRan = true;
+        return "";
     }
 
     @Override
-    public void addTask(String[] input) {
+    public String addTask(String[] input) {
         this.addTaskRan = true;
+        return "";
     }
 
     @Override
-    public void deleteTask(int taskPosition) {
+    public String deleteTask(int taskPosition) {
         this.deleteTaskRan = true;
+        return "";
     }
 
     @Override

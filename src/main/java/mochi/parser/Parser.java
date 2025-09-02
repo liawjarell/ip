@@ -25,26 +25,22 @@ public class Parser {
      * @param input The user input to be parsed.
      * @throws MochiException If any error occurs while parsing the input or invoking the appropriate action.
      */
-    public static void parseGeneralInput(Mochi mochi, String input) throws MochiException {
+    public static String parseGeneralInput(Mochi mochi, String input) throws MochiException {
         if (input.equals("bye")) {
-            mochi.exit();
+            return mochi.exit();
         } else if (input.equals("list")) {
-            mochi.printList();
+            return mochi.printList();
         } else {
             // Takes care of white spaces before description
             String command = input.split("\s+", 2)[0];
 
             switch (command) {
             case "mark", "unmark", "delete":
-                parseNumberedAction(mochi, input, command);
-                break;
+                return parseNumberedAction(mochi, input, command);
             case "todo", "deadline", "event":
-                parseAddTask(mochi, input, command);
-                break;
+                return parseAddTask(mochi, input, command);
             case "find":
-                System.out.println(input);
-                parseFindTask(mochi, input, command);
-                break;
+                return parseFindTask(mochi, input, command);
             default:
                 throw new MochiException("Oops! I'm sorry but I don't know what that means. Try again!");
             }
@@ -61,7 +57,7 @@ public class Parser {
      * @param command The command indicating the type of task to be added.
      * @throws MochiException If any error occurs while parsing the input or invoking the appropriate action.
      */
-    public static void parseAddTask(Mochi mochi, String input, String command) throws MochiException {
+    public static String parseAddTask(Mochi mochi, String input, String command) throws MochiException {
         String description = "";
         try {
             // If task provided without description, splitting of string throws ArrayIndexOutfBoundsException
@@ -72,14 +68,11 @@ public class Parser {
 
         switch (command) {
         case "todo":
-            parseTodo(mochi, command, description);
-            break;
+            return parseTodo(mochi, command, description);
         case "deadline":
-            parseDeadline(mochi, command, description);
-            break;
+            return parseDeadline(mochi, command, description);
         case "event":
-            parseEvent(mochi, command, description);
-            break;
+            return parseEvent(mochi, command, description);
         default:
             throw new MochiException("Oops! I'm sorry but I don't know what that means. Try again!");
         }
@@ -93,9 +86,9 @@ public class Parser {
      * @param description The description of the task to be added.
      * @throws MochiException If an error occurs while adding the task.
      */
-    public static void parseTodo(Mochi mochi, String command, String description) throws MochiException {
+    public static String parseTodo(Mochi mochi, String command, String description) throws MochiException {
         String[] results = {command, description};
-        mochi.addTask(results);
+        return mochi.addTask(results);
     }
 
     /**
@@ -106,7 +99,7 @@ public class Parser {
      * @param input The description of the task to be added.
      * @throws MochiException If an error occurs while adding the task.
      */
-    public static void parseDeadline(Mochi mochi, String command, String input) throws MochiException {
+    public static String parseDeadline(Mochi mochi, String command, String input) throws MochiException {
         int byIndex = input.indexOf("/by");
         // Check if "/by" exists
         if (byIndex == -1) {
@@ -123,7 +116,7 @@ public class Parser {
             throw new MochiException("Please specify a date/time after /by");
         }
 
-        mochi.addTask(results);
+        return mochi.addTask(results);
     }
 
     /**
@@ -134,7 +127,7 @@ public class Parser {
      * @param input The description of the task to be added.
      * @throws MochiException If an error occurs while adding the task.
      */
-    public static void parseEvent(Mochi mochi, String command, String input) throws MochiException {
+    public static String parseEvent(Mochi mochi, String command, String input) throws MochiException {
 
         // Checks if /from and /to exists
         int fromIndex = input.indexOf("/from");
@@ -165,7 +158,7 @@ public class Parser {
         }
 
         String[] result = {command, parts[0], from, to};
-        mochi.addTask(result);
+        return mochi.addTask(result);
     }
 
     /**
@@ -178,7 +171,7 @@ public class Parser {
      * @param command The command indicating the type of action to be performed.
      * @throws MochiException If any error occurs while parsing the input or invoking the appropriate action.
      */
-    public static void parseNumberedAction(Mochi mochi, String input, String command) throws MochiException {
+    public static String parseNumberedAction(Mochi mochi, String input, String command) throws MochiException {
         int taskPosition = 0;
         try {
             taskPosition = Integer.parseInt(input.split(" ")[1]) - 1;
@@ -191,15 +184,13 @@ public class Parser {
 
         switch (command) {
         case "mark":
-            mochi.markTask(taskPosition);
-            break;
+            return mochi.markTask(taskPosition);
         case "unmark":
-            mochi.unmarkTask(taskPosition);
-            break;
+            return mochi.unmarkTask(taskPosition);
         case "delete":
-            mochi.deleteTask(taskPosition);
-            break;
+            return mochi.deleteTask(taskPosition);
         default:
+            throw new MochiException("Something went wrong in parseNumberedAction");
         }
     }
 
@@ -211,7 +202,7 @@ public class Parser {
      * @param command The command string, which in this case is expected to be "find".
      * @throws MochiException If the input does not contain a keyword after the command.
      */
-    public static void parseFindTask(Mochi mochi, String input, String command) throws MochiException {
+    public static String parseFindTask(Mochi mochi, String input, String command) throws MochiException {
         String keyword = "";
         try {
             keyword = input.split(" ", 2)[1];
@@ -219,7 +210,7 @@ public class Parser {
             throw new MochiException("Please input a keyword after find!");
         }
         keyword = keyword.trim();
-        mochi.find(keyword);
+        return mochi.find(keyword);
     }
 
 
