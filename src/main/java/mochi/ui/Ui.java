@@ -51,15 +51,18 @@ public class Ui {
     /**
      * Prints a welcome message to the user.
      */
-    public void welcome() {
-        this.wrapPrint(Messages.MESSAGE_WELCOME);
+    public String welcome() {
+        return Messages.MESSAGE_WELCOME;
+        //        this.wrapPrint(Messages.MESSAGE_WELCOME);
     }
+
 
     /**
      * Prints a goodbye message to the user.
      */
-    public void goodbye() {
-        this.wrapPrint(Messages.MESSAGE_GOODBYE);
+    public String goodbye() {
+        return Messages.MESSAGE_GOODBYE;
+        //        this.wrapPrint(Messages.MESSAGE_GOODBYE);
     }
 
     /**
@@ -67,17 +70,20 @@ public class Ui {
      *
      * @param taskString The string representation of the task that has been marked.
      */
-    public void notifyMarkTask(String taskString) {
-        this.wrapPrint(String.format(Messages.MESSAGE_TASK_MARKED, taskString));
+    public String notifyMarkTask(String taskString) {
+        return String.format(Messages.MESSAGE_TASK_MARKED, taskString);
+        //        this.wrapPrint(String.format(Messages.MESSAGE_TASK_MARKED, taskString));
     }
+
 
     /**
      * Notifies the user that a task has been unmarked.
      *
      * @param taskString The string representation of the task that has been unmarked.
      */
-    public void notifyUnmarkTask(String taskString) {
-        this.wrapPrint(String.format(Messages.MESSAGE_TASK_UNMARKED, taskString));
+    public String notifyUnmarkTask(String taskString) {
+        return String.format(Messages.MESSAGE_TASK_UNMARKED, taskString);
+        //        this.wrapPrint(String.format(Messages.MESSAGE_TASK_UNMARKED, taskString));
     }
 
     /**
@@ -86,8 +92,9 @@ public class Ui {
      * @param taskString The string representation of the task that has been added.
      * @param numOfTasks The number of tasks in the task list after the addition.
      */
-    public void notifyAddTask(String taskString, int numOfTasks) {
-        this.wrapPrint(String.format(Messages.MESSAGE_TASK_ADDED, taskString, numOfTasks));
+    public String notifyAddTask(String taskString, int numOfTasks) {
+        return String.format(Messages.MESSAGE_TASK_ADDED, taskString, numOfTasks);
+        //        this.wrapPrint(String.format(Messages.MESSAGE_TASK_ADDED, taskString, numOfTasks));
     }
 
     /**
@@ -96,8 +103,9 @@ public class Ui {
      * @param taskString The string representation of the task that has been deleted.
      * @param numOfTasks The number of tasks in the task list after the deletion.
      */
-    public void notifyDeleteTask(String taskString, int numOfTasks) {
-        this.wrapPrint(String.format(Messages.MESSAGE_TASK_DELETED, taskString, numOfTasks));
+    public String notifyDeleteTask(String taskString, int numOfTasks) {
+        return String.format(Messages.MESSAGE_TASK_DELETED, taskString, numOfTasks);
+        //        this.wrapPrint(String.format(Messages.MESSAGE_TASK_DELETED, taskString, numOfTasks));
     }
 
     /**
@@ -107,11 +115,13 @@ public class Ui {
      *
      * @param tasks The task list to be printed.
      */
-    public void showTasks(TaskList tasks) {
+    public String showTasks(TaskList tasks) {
         if (tasks.isEmpty()) {
-            this.wrapPrint(Messages.MESSAGE_EMPTY_LIST);
+            return Messages.MESSAGE_EMPTY_LIST;
+            //            this.wrapPrint(Messages.MESSAGE_EMPTY_LIST);
         } else {
-            this.wrapPrint(String.format(Messages.MESSAGE_LIST_PRINT, tasks.toString()));
+            return String.format(Messages.MESSAGE_LIST_PRINT, tasks.toString());
+            //            this.wrapPrint(String.format(Messages.MESSAGE_LIST_PRINT, tasks.toString()));
         }
     }
 
@@ -122,11 +132,13 @@ public class Ui {
      *
      * @param tasks The task list containing the matching tasks to be displayed.
      */
-    public void showMatchingTasks(TaskList tasks) {
+    public String showMatchingTasks(TaskList tasks) {
         if (tasks.isEmpty()) {
-            this.wrapPrint(Messages.MESSAGE_EMPTY_LIST);
+            return Messages.MESSAGE_EMPTY_LIST;
+            //            this.wrapPrint(Messages.MESSAGE_EMPTY_LIST);
         } else {
-            this.wrapPrint(String.format(Messages.MESSAGE_LIST_PRINT, tasks.toString()));
+            return String.format(Messages.MESSAGE_LIST_PRINT, tasks.toString());
+            //            this.wrapPrint(String.format(Messages.MESSAGE_LIST_PRINT, tasks.toString()));
         }
     }
 
