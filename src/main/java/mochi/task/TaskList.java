@@ -73,7 +73,7 @@ public class TaskList {
 
         switch (input[0]) {
         case "todo":
-            task = new ToDos(input);
+            task = new ToDo(input);
             break;
         case "deadline":
             task = new Deadlines(input);

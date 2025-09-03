@@ -200,7 +200,6 @@ public class Mochi {
      * It continuously reads user input until the user decides to exit the program.
      */
     private void getInput() {
-        // Variables
         Scanner myObj = new Scanner(System.in);
 
         while (true) {
@@ -221,15 +220,4 @@ public class Mochi {
         }
     }
 
-    /**
-     * The entry point for the Mochi task management application.
-     * This method initializes the application with a specified task storage file
-     * and starts the main program logic by invoking the {@code run()} method.
-     *
-     * @param args Command-line arguments passed to the program.
-     *             Currently not used by the Mochi application.
-     */
-    public static void main(String[] args) {
-    //        new Mochi("data/tasks.txt").run();
-    }
 }

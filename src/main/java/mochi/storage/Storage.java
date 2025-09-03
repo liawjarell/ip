@@ -12,7 +12,7 @@ import mochi.exception.MochiException;
 import mochi.task.Deadlines;
 import mochi.task.Event;
 import mochi.task.Task;
-import mochi.task.ToDos;
+import mochi.task.ToDo;
 
 
 /**
@@ -63,7 +63,7 @@ public class Storage {
      * will throw an exception.
      *
      * @return An ArrayList of Task objects parsed from the file. It contains
-     *         tasks of type ToDos, Deadlines, or Event, based on the stored data.
+     *         tasks of type ToDo, Deadlines, or Event, based on the stored data.
      * @throws MochiException If there is an error while reading or parsing the file.
      */
     public ArrayList<Task> readTasks() throws MochiException {
@@ -80,7 +80,7 @@ public class Storage {
                     // First part task type, second part description
                     String[] parts = tempTask.split(" \\| ", 2);
                     if (parts[0].equals("T")) {
-                        temp.add(ToDos.parseString(parts[1]));
+                        temp.add(ToDo.parseString(parts[1]));
                     } else if (parts[0].equals("D")) {
                         temp.add(Deadlines.parseString(parts[1]));
                     } else if (parts[0].equals("E")) {
