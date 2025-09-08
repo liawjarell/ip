@@ -77,18 +77,22 @@ public class Storage {
                 if (tempTask.isEmpty()) {
                     // Last line will be empty
                     break;
-                } else {
-                    // First part task type, second part description
-                    String[] parts = tempTask.split(" \\| ", 2);
-                    if (parts[0].equals("T")) {
-                        temp.add(ToDo.parseString(parts[1]));
-                    } else if (parts[0].equals("D")) {
-                        temp.add(Deadlines.parseString(parts[1]));
-                    } else if (parts[0].equals("E")) {
-                        temp.add(Event.parseString(parts[1]));
-                    } else {
-                        throw new AssertionError("Something went wrong in readTasks");
-                    }
+                }
+                // First part task type, second part description
+                String[] parts = tempTask.split(" \\| ", 2);
+                String taskType = parts[0];
+                switch (taskType) {
+                case "T":
+                    temp.add(ToDo.parseString(parts[1]));
+                    break;
+                case "D":
+                    temp.add(Deadlines.parseString(parts[1]));
+                    break;
+                case "E":
+                    temp.add(Event.parseString(parts[1]));
+                    break;
+                default:
+                    throw new AssertionError("Something went wrong in readTasks");
                 }
             }
         } catch (FileNotFoundException e) {

@@ -32,17 +32,17 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Duke instance */
+    /** Injects the Mochi instance */
     public void setMochi(Mochi m) {
         mochi = m;
         // Add a welcome message from Mochi when GUI loads
         dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(mochi.welcome(), mochiImage)
+                DialogBox.getMochiDialog(mochi.welcome(), mochiImage)
         );
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing Mochi's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML
@@ -51,7 +51,7 @@ public class MainWindow extends AnchorPane {
         String response = mochi.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, mochiImage)
+                DialogBox.getMochiDialog(response, mochiImage)
         );
 
         if (input.trim().equals("bye")) {
