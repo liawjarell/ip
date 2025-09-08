@@ -37,13 +37,19 @@ public class ToDo extends Task {
      * @throws MochiException If an error occurs while parsing the string.
      */
     public static ToDo parseString(String toParse) throws MochiException {
-        String[] result = toParse.strip().split(" \\| ", 2);
+        String[] result = toParse.strip().split("\\|", 3);
 
-        try {
-            return new ToDo(result[1], result[0].equals("1"));
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new MochiException(e.getMessage());
+        String description = result[1].trim();
+        boolean completed = result[0].trim().equals("1");
+        String tag = result[2].trim();
+
+        assert !result[1].isEmpty();
+
+        ToDo temp = new ToDo(description, completed);
+        if (!tag.isEmpty()) {
+            temp.tag(tag);
         }
+        return temp;
     }
 
     /**
@@ -53,7 +59,7 @@ public class ToDo extends Task {
      */
     @Override
     public String toSaveString() {
-        return String.format("T | %d | %s", this.isCompleted ? 1 : 0, this.description);
+        return String.format("T | %d | %s | %s", this.isCompleted ? 1 : 0, this.description, super.tag);
     }
 
     @Override
