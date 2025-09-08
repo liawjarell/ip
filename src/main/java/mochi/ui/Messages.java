@@ -28,9 +28,9 @@ public class Messages {
     public static final String MESSAGE_LIST_PRINT =
             "Here are the tasks in your list:\n%s";
 
-    public static final String MESSAGE_FIND_PRINT =
-            "Here are the matching tasks in your list:\n%s";
+    public static final String MESSAGE_TAGGED =
+            "Nice! I've tagged this task:\n    %s";
 
-    public static final String MESSAGE_FIND_EMPTY =
-            "No matching tasks found!";
+    public static final String MESSAGE_UNTAGGED =
+            "Nice! I've untagged this task:\n    %s";
 }

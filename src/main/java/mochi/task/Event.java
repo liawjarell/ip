@@ -53,9 +53,19 @@ public class Event extends Task {
      * @throws MochiException If an error occurs while parsing the string.
      */
     public static Event parseString(String toParse) throws MochiException {
-        String[] result = toParse.strip().split(" \\| ", 4);
+        String[] result = toParse.strip().split("\\|", 5);
 
-        return new Event(result[1], result[0].equals("1"), result[2], result[3]);
+        String description = result[1].trim();
+        boolean completed = result[0].trim().equals("1");
+        String from = result[2].trim();
+        String to = result[3].trim();
+        String tag = result[4].trim();
+
+        Event temp = new Event(description, completed, from, to);
+        if (!tag.isEmpty()) {
+            temp.tag(tag);
+        }
+        return temp;
     }
 
     /**
@@ -65,13 +75,14 @@ public class Event extends Task {
      */
     @Override
     public String toSaveString() {
-        return String.format("E | %d | %s | %s | %s",
-                this.isCompleted ? 1 : 0, this.description, this.from, this.to);
+        return String.format("E | %d | %s | %s | %s | %s",
+                this.isCompleted ? 1 : 0, this.description, this.from, this.to, super.tag);
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (from: %s to: %s)", super.toString(), this.from, this.to);
+        return String.format("[E]%s (from: %s to: %s)%s",
+                super.toString(), this.from, this.to, super.getTag());
     }
 
 }

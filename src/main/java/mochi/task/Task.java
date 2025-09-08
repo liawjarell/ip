@@ -21,6 +21,11 @@ public class Task {
     protected boolean isCompleted = false;
 
     /**
+     * The tag of the task.
+     */
+    protected String tag;
+
+    /**
      * Initializes a new instance of the Task class.
      * The description of the task cannot be empty.
      *
@@ -32,6 +37,7 @@ public class Task {
             throw new MochiException("Task description cannot be empty!");
         }
         this.description = description;
+        this.tag = "";
     }
 
     /**
@@ -86,6 +92,31 @@ public class Task {
      */
     public boolean descriptionContainsKeyword(String keyword) {
         return this.description.toLowerCase().contains(keyword.toLowerCase());
+    }
+
+    /**
+     * Sets the tag of the task.
+     *
+     * @param tag The tag to be set.
+     */
+    public void tag(String tag) {
+        this.tag = tag;
+    }
+
+    /**
+     * Removes the tag of the task.
+     */
+    public void untag() {
+        this.tag = "";
+    }
+
+    /**
+     * Gets the tag of the task.
+     *
+     * @return The tag of the task.
+     */
+    public String getTag() {
+        return this.tag.isBlank() ? "" : " #" + this.tag;
     }
 
     @Override

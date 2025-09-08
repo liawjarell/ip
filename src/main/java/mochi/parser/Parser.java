@@ -9,8 +9,6 @@ import java.time.format.DateTimeParseException;
 import mochi.Mochi;
 import mochi.exception.MochiException;
 
-
-
 /**
  * Parser class for parsing user input.
  * This class delegates the task of parsing user input to the appropriate methods.
@@ -38,7 +36,7 @@ public class Parser {
             return mochi.exit();
         case "list":
             return mochi.printList();
-        case "mark", "unmark", "delete":
+        case "mark", "unmark", "delete", "tag", "untag":
             return parseNumberedAction(mochi, trimmed, command);
         case "todo", "deadline", "event":
             return parseAddTask(mochi, trimmed, command);
@@ -195,9 +193,35 @@ public class Parser {
             return mochi.unmarkTask(taskPosition);
         case "delete":
             return mochi.deleteTask(taskPosition);
+        case "tag":
+            return parseTagTask(mochi, taskPosition, input);
+        case "untag":
+            return mochi.untagTask(taskPosition);
         default:
             throw new AssertionError("Something went wrong in parseNumberedAction");
         }
+    }
+
+    /**
+     * Parses the "tag" command and tags the task at the specified position in the task list.
+     *
+     * @param mochi The Mochi instance used for tagging tasks.
+     * @param taskPosition The zero-based index of the task to be tagged.
+     * @param input The full input string provided by the user, which includes the command and tag.
+     * @return A string indicating the success of the tagging operation.
+     * @throws MochiException If the input does not contain a tag after the task number.
+     */
+    public static String parseTagTask(Mochi mochi, int taskPosition, String input) throws MochiException {
+        String tag = "";
+        try {
+            tag = input.split(" ", 3)[2];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new MochiException("Please input a tag after the task number!");
+        }
+        tag = tag.trim();
+
+        assert !tag.isEmpty();
+        return mochi.tagTask(taskPosition, tag);
     }
 
     /**

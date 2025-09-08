@@ -51,9 +51,18 @@ public class Deadlines extends Task {
      * @throws MochiException If an error occurs while parsing the string.
      */
     public static Deadlines parseString(String toParse) throws MochiException {
-        String[] result = toParse.strip().split(" \\| ", 3);
+        String[] result = toParse.strip().split("\\|", 4);
 
-        return new Deadlines(result[1], result[0].equals("1"), result[2]);
+        String description = result[1].trim();
+        boolean completed = result[0].trim().equals("1");
+        String by = result[2].trim();
+        String tag = result[3].trim();
+
+        Deadlines temp = new Deadlines(description, completed, by);
+        if (!tag.isEmpty()) {
+            temp.tag(tag);
+        }
+        return temp;
     }
 
     /**
@@ -63,13 +72,13 @@ public class Deadlines extends Task {
      */
     @Override
     public String toSaveString() {
-        return String.format("D | %d | %s | %s",
-                this.isCompleted ? 1 : 0, this.description, this.by.toString());
+        return String.format("D | %d | %s | %s | %s",
+                this.isCompleted ? 1 : 0, this.description, this.by.toString(), super.tag);
     }
 
     @Override
     public String toString() {
         DateTimeFormatter byFormatter = DateTimeFormatter.ofPattern("MMM/dd/yyyy HHmm");
-        return "[D]" + super.toString() + " (by: " + by.format(byFormatter) + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(byFormatter) + ")" + super.getTag();
     }
 }

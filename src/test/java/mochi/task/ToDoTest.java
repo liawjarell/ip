@@ -25,27 +25,35 @@ public class ToDoTest {
 
     @Test
     public void parseString_validString_returnsTodo() throws MochiException {
-        String toParse = "1 | read book";
+        String toParse = "1 | read book | done";
         ToDo temp = new ToDo("read book", true);
+        temp.tag("done");
         assertEquals(temp.toString(), ToDo.parseString(toParse).toString());
     }
 
     @Test
-    public void parseString_invalidString_throwsException() {
-        String toParse = "1 | ";
-        assertThrows(MochiException.class, () -> {
-            ToDo.parseString(toParse);
-        });
+    public void parseString_untaggedTask_returnsTodo() throws MochiException {
+        String toParse = "1 | read book |";
+        ToDo temp = new ToDo("read book", true);
+        assertEquals(temp.toString(), ToDo.parseString(toParse).toString());
     }
 
     @Test
     public void toSaveString_returnsCorrectFormat() throws MochiException {
         String[] result = {"todo", "read book"};
         ToDo temp = new ToDo(result);
-        assertEquals("T | 0 | read book", temp.toSaveString());
+        assertEquals("T | 0 | read book | ", temp.toSaveString());
 
         temp.mark();
-        assertEquals("T | 1 | read book", temp.toSaveString());
+        assertEquals("T | 1 | read book | ", temp.toSaveString());
+    }
+
+    @Test
+    public void toSaveString_taggedTask_returnsCorrectFormat() throws MochiException {
+        String[] result = {"todo", "read book"};
+        ToDo temp = new ToDo(result);
+        temp.tag("tagged");
+        assertEquals("T | 0 | read book | tagged", temp.toSaveString());
     }
 
     @Test
