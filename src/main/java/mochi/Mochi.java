@@ -212,6 +212,13 @@ public class Mochi {
         }
     }
 
+    /**
+     * Parses the user input and returns the appropriate response.
+     * This method delegates the task of parsing user input to the Parser class.
+     *
+     * @param input The user input to be parsed.
+     * @return The response string to be displayed to the user.
+     */
     public String getResponse(String input) {
         try {
             return Parser.parseGeneralInput(this, input);
