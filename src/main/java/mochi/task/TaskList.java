@@ -132,6 +132,19 @@ public class TaskList {
     }
 
     /**
+     * Tags a task at the specified position in the task list with the specified tag.
+     *
+     * @param taskPosition The zero-based index of the task to be tagged.
+     * @param tag The tag to be assigned to the task.
+     * @return The tagged task.
+     */
+    public Task tagTask(int taskPosition, String tag) {
+        Task task = this.tasks.get(taskPosition);
+        task.tag(tag);
+        return task;
+    }
+
+    /**
      * Filters the tasks in the current task list based on whether their descriptions
      * contain the specified keyword. The comparison is case-insensitive.
      *

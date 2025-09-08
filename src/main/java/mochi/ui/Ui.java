@@ -104,6 +104,16 @@ public class Ui {
     }
 
     /**
+     * Notifies the user that a task has been tagged.
+     *
+     * @param taskString The string representation of the task that has been tagged.
+     * @return The message to be displayed to the user.
+     */
+    public String notifyTaggedTask(String taskString) {
+        return String.format(Messages.MESSAGE_TAGGED, taskString);
+    }
+
+    /**
      * Prints the list of tasks to the user.
      * If the task list is empty, a corresponding message is displayed to indicate
      * that there are no tasks.
