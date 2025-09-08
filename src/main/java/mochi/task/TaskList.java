@@ -82,7 +82,7 @@ public class TaskList {
             task = new Event(input);
             break;
         default:
-            throw new MochiException("Oops! I'm sorry but I don't know what that means. Try again!");
+            throw new AssertionError("Something went wrong in addTask");
         }
 
         this.tasks.add(task);

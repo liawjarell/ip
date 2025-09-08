@@ -44,9 +44,10 @@ public class Storage {
                 dir.mkdirs();
             }
 
+            assert filePath != null;
             File temp = new File(filePath);
 
-            // Attempts to create a new file if storage file does not exist
+            // Attempts to create a new file if the storage file does not exist
             temp.createNewFile();
 
             this.f = temp;
@@ -86,7 +87,7 @@ public class Storage {
                     } else if (parts[0].equals("E")) {
                         temp.add(Event.parseString(parts[1]));
                     } else {
-                        throw new MochiException("Error encountered while parsing: " + tempTask);
+                        throw new AssertionError("Something went wrong in readTasks");
                     }
                 }
             }
