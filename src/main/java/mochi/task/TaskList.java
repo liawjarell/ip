@@ -145,6 +145,18 @@ public class TaskList {
     }
 
     /**
+     * Untags a task at the specified position in the task list.
+     *
+     * @param taskPosition The zero-based index of the task to be untagged.
+     * @return The untagged task.
+     */
+    public Task untagTask(int taskPosition) {
+        Task task = this.tasks.get(taskPosition);
+        task.untag();
+        return task;
+    }
+
+    /**
      * Filters the tasks in the current task list based on whether their descriptions
      * contain the specified keyword. The comparison is case-insensitive.
      *

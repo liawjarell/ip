@@ -30,4 +30,7 @@ public class Messages {
 
     public static final String MESSAGE_TAGGED =
             "Nice! I've tagged this task:\n    %s";
+
+    public static final String MESSAGE_UNTAGGED =
+            "Nice! I've untagged this task:\n    %s";
 }

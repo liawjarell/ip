@@ -9,8 +9,6 @@ import java.time.format.DateTimeParseException;
 import mochi.Mochi;
 import mochi.exception.MochiException;
 
-
-
 /**
  * Parser class for parsing user input.
  * This class delegates the task of parsing user input to the appropriate methods.
@@ -38,7 +36,7 @@ public class Parser {
             return mochi.exit();
         case "list":
             return mochi.printList();
-        case "mark", "unmark", "delete", "tag":
+        case "mark", "unmark", "delete", "tag", "untag":
             return parseNumberedAction(mochi, trimmed, command);
         case "todo", "deadline", "event":
             return parseAddTask(mochi, trimmed, command);
@@ -197,6 +195,8 @@ public class Parser {
             return mochi.deleteTask(taskPosition);
         case "tag":
             return parseTagTask(mochi, taskPosition, input);
+        case "untag":
+            return mochi.untagTask(taskPosition);
         default:
             throw new AssertionError("Something went wrong in parseNumberedAction");
         }

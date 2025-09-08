@@ -187,6 +187,21 @@ public class Mochi {
     }
 
     /**
+     * Untags a task at the specified position in the task list.
+     * This method updates the internal task list, notifies the user of the change,
+     * and saves the updated tasks to storage.
+     *
+     * @param taskPosition The zero-based index of the task to be untagged.
+     * @return A string indicating the success of the tagging operation.
+     * @throws MochiException If the specified task position is invalid, or any error occurs while untagging the task.
+     */
+    public String untagTask(int taskPosition) throws MochiException {
+        Task temp = this.tasks.untagTask(taskPosition);
+        this.saveTasks(this.tasks);
+        return ui.notifyUntaggedTask(temp.toString());
+    }
+
+    /**
      * Finds tasks that match the specified keyword and displays them to the user.
      * This method searches the internal task list for tasks that contain the specified keyword, and returns
      * it as a new TaskList instance. If no tasks are found, a corresponding message is displayed to indicate

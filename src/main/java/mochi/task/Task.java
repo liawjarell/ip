@@ -104,6 +104,13 @@ public class Task {
     }
 
     /**
+     * Removes the tag of the task.
+     */
+    public void untag() {
+        this.tag = "";
+    }
+
+    /**
      * Gets the tag of the task.
      *
      * @return The tag of the task.
