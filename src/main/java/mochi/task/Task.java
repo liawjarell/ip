@@ -109,7 +109,7 @@ public class Task {
      * @return The tag of the task.
      */
     public String getTag() {
-        return this.tag.isBlank() ? "" : "#" + this.tag;
+        return this.tag.isBlank() ? "" : " #" + this.tag;
     }
 
     @Override
