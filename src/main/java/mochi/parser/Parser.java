@@ -66,6 +66,8 @@ public class Parser {
             throw new MochiException("Task description cannot be empty!");
         }
 
+        assert !description.isEmpty();
+
         switch (command) {
         case "todo":
             return parseTodo(mochi, command, description);
@@ -74,7 +76,7 @@ public class Parser {
         case "event":
             return parseEvent(mochi, command, description);
         default:
-            throw new MochiException("Oops! I'm sorry but I don't know what that means. Try again!");
+            throw new AssertionError("Something went wrong in parseAddTask");
         }
     }
 
@@ -190,7 +192,7 @@ public class Parser {
         case "delete":
             return mochi.deleteTask(taskPosition);
         default:
-            throw new MochiException("Something went wrong in parseNumberedAction");
+            throw new AssertionError("Something went wrong in parseNumberedAction");
         }
     }
 
@@ -210,6 +212,8 @@ public class Parser {
             throw new MochiException("Please input a keyword after find!");
         }
         keyword = keyword.trim();
+
+        assert !keyword.isEmpty();
         return mochi.find(keyword);
     }
 
@@ -227,7 +231,8 @@ public class Parser {
      * @throws MochiException If the input string is not in a recognized format or invalid.
      */
     public static LocalDateTime stringToLocalDateTime(String dateTimeString) throws MochiException {
-        LocalDateTime dateTime;
+        assert dateTimeString != null : "dateTimeString cannot be null";
+
         LocalDate date;
         String[] dateTimeParts = dateTimeString.split(" ", 2);
         String dateString = dateTimeParts[0];
@@ -248,7 +253,9 @@ public class Parser {
             // Prompt for new input
             throw new MochiException("Please input a proper date and time in the format [yyyy/MM/dd HHmm]");
         }
+        assert date != null : "date cannot be null";
         // Parse time
+        LocalDateTime dateTime;
         try {
             // If timeString does not exist, ArrayIndexOutOfBoundsException will be thrown.
             String timeString = dateTimeParts[1];
@@ -263,6 +270,7 @@ public class Parser {
             throw new MochiException("Please input a proper date and time in the format [yyyy/MM/dd HHmm]");
         }
 
+        assert dateTime != null : "dateTime cannot be null";
         return dateTime;
 
     }
