@@ -26,24 +26,26 @@ public class Parser {
      * @throws MochiException If any error occurs while parsing the input or invoking the appropriate action.
      */
     public static String parseGeneralInput(Mochi mochi, String input) throws MochiException {
-        if (input.equals("bye")) {
-            return mochi.exit();
-        } else if (input.equals("list")) {
-            return mochi.printList();
-        } else {
-            // Takes care of white spaces before description
-            String command = input.split("\s+", 2)[0];
+        String trimmed = (input == null) ? "" : input.trim();
+        if (trimmed.isEmpty()) {
+            throw new MochiException("Input cannot be empty!");
+        }
 
-            switch (command) {
-            case "mark", "unmark", "delete":
-                return parseNumberedAction(mochi, input, command);
-            case "todo", "deadline", "event":
-                return parseAddTask(mochi, input, command);
-            case "find":
-                return parseFindTask(mochi, input, command);
-            default:
-                throw new MochiException("Oops! I'm sorry but I don't know what that means. Try again!");
-            }
+        String command = trimmed.split("\\s+", 2)[0];
+
+        switch (command) {
+        case "bye":
+            return mochi.exit();
+        case "list":
+            return mochi.printList();
+        case "mark", "unmark", "delete":
+            return parseNumberedAction(mochi, trimmed, command);
+        case "todo", "deadline", "event":
+            return parseAddTask(mochi, trimmed, command);
+        case "find":
+            return parseFindTask(mochi, trimmed, command);
+        default:
+            throw new MochiException("Oops! I'm sorry but I don't know what that means!");
         }
     }
 
@@ -173,13 +175,15 @@ public class Parser {
      */
     public static String parseNumberedAction(Mochi mochi, String input, String command) throws MochiException {
         int taskPosition = 0;
+        // Check if a task number is inputted
         try {
             taskPosition = Integer.parseInt(input.split(" ")[1]) - 1;
-            if (taskPosition < 0 || taskPosition >= mochi.getTasksCount()) {
-                throw new MochiException("Please input a valid task number!");
-            }
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             throw new MochiException("Please input the task number!");
+        }
+        // Check if the task number is valid
+        if (taskPosition < 0 || taskPosition >= mochi.getTasksCount()) {
+            throw new MochiException("Please input a valid task number!");
         }
 
         switch (command) {
