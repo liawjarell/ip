@@ -91,7 +91,6 @@ public class Mochi {
      */
     public String exit() {
         return ui.goodbye();
-        // System.exit(0);
     }
 
     /**
