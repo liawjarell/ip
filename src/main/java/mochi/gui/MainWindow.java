@@ -55,11 +55,18 @@ public class MainWindow extends AnchorPane {
         );
 
         if (input.trim().equals("bye")) {
-            javafx.animation.PauseTransition delay =
-                    new javafx.animation.PauseTransition(javafx.util.Duration.seconds(1));
-            delay.setOnFinished(e -> javafx.application.Platform.exit());
-            delay.play();
+            mochiExit();
         }
         userInput.clear();
+    }
+
+    /**
+     * Exits the Mochi application after a delay.
+     */
+    private void mochiExit() {
+        javafx.animation.PauseTransition delay =
+                new javafx.animation.PauseTransition(javafx.util.Duration.seconds(1));
+        delay.setOnFinished(e -> javafx.application.Platform.exit());
+        delay.play();
     }
 }
