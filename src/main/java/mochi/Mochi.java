@@ -19,6 +19,7 @@ public class Mochi {
 
     /**
      * A TaskList object that represents the list of tasks currently managed by Mochi.
+     * <p>
      * It contains methods for manipulating the task list, such as adding, deleting,
      * marking, and unmarking tasks. This instance is initialized with tasks loaded
      * from storage and is shared across various operations to manage the user's tasks.
@@ -27,18 +28,21 @@ public class Mochi {
 
     /**
      * Represents the storage system for managing task data in the Mochi application.
+     * <p>
      * It is responsible for saving and retrieving tasks from a specified file path.
      * The storage facilitates the persistence of task information across program executions.
      */
     private Storage storage;
 
     /**
-     * Represents the user interface component of the application. This instance is responsible
-     * for communicating with the user, displaying messages, and formatting outputs consistently.
-     * It provides feedback and prompts to the user based on actions performed in the application.
+     * Represents the user interface component of the application.
+     * <p>
+     * This instance is responsible for communicating with the user, displaying messages,
+     * and formatting outputs consistently. It provides feedback and prompts to the user based
+     * on actions performed in the application.
      * <p>
      * The Ui instance handles all user-facing interactions by wrapping messages with a consistent
-     *  delimiter and informs the user about different task actions such as adding, marking,
+     * delimiter and informs the user about different task actions such as adding, marking,
      * unmarking, or deleting tasks.
      */
     private Ui ui;
@@ -62,6 +66,7 @@ public class Mochi {
 
     /**
      * Executes the main program logic of the Mochi application.
+     * <p>
      * This method enters a loop to continuously read and parse user input
      * until the user decides to exit the program explicitly.
      * It invokes the {@code getInput()} method to process user commands
@@ -76,7 +81,7 @@ public class Mochi {
 
     /**
      * Prints a welcome message to the user.
-     *
+     * <p>
      * @return A welcome message to be displayed to the user.
      */
     public String welcome() {
@@ -85,6 +90,7 @@ public class Mochi {
 
     /**
      * Terminates the Mochi application.
+     * <p>
      * This method performs cleanup actions before exiting the program.
      * It ensures that a goodbye message is displayed to the user via the user interface
      * and then ends the program by invoking {@code System.exit(0)}.
@@ -95,7 +101,7 @@ public class Mochi {
 
     /**
      * Retrieves the total number of tasks in the task list.
-     *
+     * <p>
      * @return The total count of tasks currently stored.
      */
     public int getTasksCount() {
@@ -104,6 +110,7 @@ public class Mochi {
 
     /**
      * Prints the list of tasks currently stored in the application.
+     * <p>
      * This method delegates the display functionality to the user interface component,
      * which formats and prints the list of tasks from the internal task list.
      * If the task list is empty, a corresponding message is displayed to indicate
@@ -115,6 +122,7 @@ public class Mochi {
 
     /**
      * Marks a task at the specified position in the task list as completed.
+     * <p>
      * This method updates the internal task list, notifies the user of the change,
      * and saves the updated tasks to storage.
      *
@@ -129,6 +137,7 @@ public class Mochi {
 
     /**
      * Unmarks a task at the specified position in the task list as incomplete.
+     * <p>
      * This method updates the internal task list, notifies the user of the change,
      * and saves the updated tasks to storage.
      *
@@ -143,6 +152,7 @@ public class Mochi {
 
     /**
      * Adds a new task to the task list.
+     * <p>
      * This method updates the internal task list, notifies the user of the change,
      * and saves the updated tasks to storage.
      *
@@ -157,6 +167,7 @@ public class Mochi {
 
     /**
      * Deletes a task at the specified position in the task list.
+     * <p>
      * This method updates the internal task list, notifies the user of the change,
      * and saves the updated tasks to storage.
      *
@@ -171,6 +182,7 @@ public class Mochi {
 
     /**
      * Tags a task at the specified position in the task list.
+     * <p>
      * This method updates the internal task list, notifies the user of the change,
      * and saves the updated tasks to storage.
      *
@@ -187,6 +199,7 @@ public class Mochi {
 
     /**
      * Untags a task at the specified position in the task list.
+     * <p>
      * This method updates the internal task list, notifies the user of the change,
      * and saves the updated tasks to storage.
      *
@@ -202,6 +215,7 @@ public class Mochi {
 
     /**
      * Finds tasks that match the specified keyword and displays them to the user.
+     * <p>
      * This method searches the internal task list for tasks that contain the specified keyword, and returns
      * it as a new TaskList instance. If no tasks are found, a corresponding message is displayed to indicate
      * that no tasks were found.
@@ -215,6 +229,7 @@ public class Mochi {
 
     /**
      * Saves the current list of tasks to storage.
+     * <p>
      * This method delegates the task saving functionality to the storage component.
      *
      * @param tasks The list of tasks to be saved.
@@ -226,6 +241,7 @@ public class Mochi {
 
     /**
      * Loop that processes user input and invokes the appropriate methods to handle the input.
+     * <p>
      * This method delegates the task of parsing user input to the Parser class.
      * It continuously reads user input until the user decides to exit the program.
      */
@@ -244,6 +260,7 @@ public class Mochi {
 
     /**
      * Parses the user input and returns the appropriate response.
+     * <p>
      * This method delegates the task of parsing user input to the Parser class.
      *
      * @param input The user input to be parsed.

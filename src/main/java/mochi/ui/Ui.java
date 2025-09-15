@@ -80,7 +80,6 @@ public class Ui {
      */
     public String notifyUnmarkTask(String taskString) {
         return String.format(Messages.MESSAGE_TASK_UNMARKED, taskString);
-        //        this.wrapPrint(String.format(Messages.MESSAGE_TASK_UNMARKED, taskString));
     }
 
     /**

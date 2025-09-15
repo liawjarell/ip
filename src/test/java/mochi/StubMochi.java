@@ -10,12 +10,12 @@ import mochi.task.TaskList;
  */
 public class StubMochi extends Mochi {
 
-    private boolean exitRan = false;
-    private boolean printListRan = false;
-    private boolean markTaskRan = false;
-    private boolean unmarkTaskRan = false;
-    private boolean addTaskRan = false;
-    private boolean deleteTaskRan = false;
+    private boolean isExitRan = false;
+    private boolean isPrintListRan = false;
+    private boolean isMarkTaskRan = false;
+    private boolean isUnmarkTaskRan = false;
+    private boolean isAddTaskRan = false;
+    private boolean isDeleteTaskRan = false;
     private boolean saveTasksRan = false;
 
     // Simple in-memory representation of tasks for assertions in tests
@@ -31,37 +31,37 @@ public class StubMochi extends Mochi {
 
     @Override
     public String exit() {
-        this.exitRan = true;
+        this.isExitRan = true;
         return "";
     }
 
     @Override
     public String printList() {
-        this.printListRan = true;
+        this.isPrintListRan = true;
         return "";
     }
 
     @Override
     public String markTask(int taskPosition) {
-        this.markTaskRan = true;
+        this.isMarkTaskRan = true;
         return "";
     }
 
     @Override
     public String unmarkTask(int taskPosition) {
-        this.unmarkTaskRan = true;
+        this.isUnmarkTaskRan = true;
         return "";
     }
 
     @Override
     public String addTask(String[] input) {
-        this.addTaskRan = true;
+        this.isAddTaskRan = true;
         return "";
     }
 
     @Override
     public String deleteTask(int taskPosition) {
-        this.deleteTaskRan = true;
+        this.isDeleteTaskRan = true;
         return "";
     }
 
@@ -73,27 +73,27 @@ public class StubMochi extends Mochi {
     // Test helper methods used by ParserTest
 
     public boolean listDisplayed() {
-        return printListRan;
+        return isPrintListRan;
     }
 
     public boolean isExited() {
-        return exitRan;
+        return isExitRan;
     }
 
     public boolean markCalled() {
-        return markTaskRan;
+        return isMarkTaskRan;
     }
 
     public boolean unmarkCalled() {
-        return unmarkTaskRan;
+        return isUnmarkTaskRan;
     }
 
     public boolean addCalled() {
-        return addTaskRan;
+        return isAddTaskRan;
     }
 
     public boolean deleteCalled() {
-        return deleteTaskRan;
+        return isDeleteTaskRan;
     }
 
     /**

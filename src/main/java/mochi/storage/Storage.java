@@ -24,12 +24,14 @@ public class Storage {
 
     /**
      * Represents the file used to store and retrieve task data.
+     * <p>
      * This object points to the file location where task information is saved and loaded.
      */
     private File f;
 
     /**
      * Initializes a storage instance for managing tasks data based on the specified file path.
+     * <p>
      * This constructor ensures that the necessary directories and files for storage are created
      * if they do not already exist.
      *
@@ -58,6 +60,7 @@ public class Storage {
 
     /**
      * Reads tasks from the instanced file and parses them into a list of Task objects.
+     * <p>
      * The tasks are expected to be stored in a specific format where the
      * first part indicates the task type (e.g., "T" for ToDos, "D" for Deadlines, "E" for Events),
      * followed by relevant task details. Invalid or malformed task entries
@@ -104,6 +107,7 @@ public class Storage {
 
     /**
      * Saves a list of tasks to the instanced file.
+     * <p>
      * This method serializes the provided list of tasks into a string format
      * suitable for storage and writes it to the designated file.
      *

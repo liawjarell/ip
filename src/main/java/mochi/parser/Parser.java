@@ -18,7 +18,7 @@ public class Parser {
 
     /**
      * Parses user input and invokes the appropriate parsing, or Mochi methods to handle the input.
-     *
+     * <p>
      * @param mochi The Mochi instance to be used for parsing and invoking actions.
      * @param input The user input to be parsed.
      * @throws MochiException If any error occurs while parsing the input or invoking the appropriate action.
@@ -49,6 +49,7 @@ public class Parser {
 
     /**
      * Parses user input for adding tasks.
+     * <p>
      * This method delegates the task of parsing user input to the appropriate parsing methods.
      * It also handles exceptions and provides feedback to the user in case of errors.
      *
@@ -165,6 +166,7 @@ public class Parser {
 
     /**
      * Parses user input for marking, unmarking or deleting tasks.
+     * <p>
      * This method checks the validity of the task number provided by the user, and
      * delegates the task of parsing user input to the appropriate parsing methods.
      *
@@ -248,6 +250,7 @@ public class Parser {
 
     /**
      * Converts a date and time string into a {@code LocalDateTime} object.
+     * <p>
      * The method supports multiple date formats such as "yyyy/MM/dd" or "yyyy-MM-dd",
      * and also allows for special keywords like "today" or "tomorrow".
      * If the time part is missing, the default time is set to 23:59 (end of the day).

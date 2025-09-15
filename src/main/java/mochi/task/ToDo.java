@@ -18,6 +18,7 @@ public class ToDo extends Task {
 
     /**
      * Alternate form of initialising a new instance of the ToDo class.
+     * <p>
      * Used after parsing string from storage.
      *
      * @param description Description of the task.
