@@ -58,7 +58,7 @@ public class TaskList {
      * @return The number of tasks in the task list.
      */
     public int getTasksCount() {
-        return this.tasksCount;
+        return this.tasks.size();
     }
 
     /**
@@ -145,10 +145,10 @@ public class TaskList {
     }
 
     /**
-     * Untags a task at the specified position in the task list.
+     * Removes the tag from the task at the specified position in the task list.
      *
-     * @param taskPosition The zero-based index of the task to be untagged.
-     * @return The untagged task.
+     * @param taskPosition The zero-based index of the task to have its tag removed.
+     * @return The task with its tag removed.
      */
     public Task untagTask(int taskPosition) {
         Task task = this.tasks.get(taskPosition);
