@@ -88,6 +88,7 @@ Mochi data are saved in the hard disk automatically after any command that chang
 There is no need to save manually.
 
 ## Command summary
+
 | Action   | Format Examples                     |
 |:---------|:------------------------------------|
 | todo     | `todo TASK_NAME`                    |
