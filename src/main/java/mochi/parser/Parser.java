@@ -151,8 +151,21 @@ public class Parser {
         // First part is from, second part is to
         String[] duration = parts[1].split("\\s*/to\\s*");
 
-        String from = duration[0].trim();
-        String to = duration[1].trim();
+        String from = "";
+        String to = "";
+
+        try {
+            from = duration[0].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new MochiException("Please provide a start date or time after /from");
+        }
+
+        try {
+            to = duration[1].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new MochiException("Please provide an end date or time after /to");
+        }
+
         if (from.isEmpty()) {
             throw new MochiException("Please provide a start date or time after /from");
         }

@@ -43,8 +43,8 @@ Example: `todo read book`
 ### Adding a deadline task: `deadline`
 Format: `deadline TASK_NAME /by DATE TIME`\
 Date and time must be in the format `yyyy-MM-dd HH:mm`\
-Example: `deadline buy milk /by 2022-01-01 12:00`\
-Optional arguments: If `TIME` is not specified, the default time is `23:59`.
+Example: `deadline buy milk /by 2022-01-01 1200`\
+Optional arguments: If `TIME` is not specified, the default time is `2359`.
 
 ### Adding a event task: `event`
 Format: `event TASK_NAME /from FROM /to TO`\
